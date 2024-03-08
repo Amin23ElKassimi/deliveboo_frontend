@@ -1,0 +1,7 @@
+@use './partials/variables' as *;
+@use './partials/mixins' as *;
+@use '../../node_modules/bootstrap/scss/bootstrap.scss';
+
+body{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}

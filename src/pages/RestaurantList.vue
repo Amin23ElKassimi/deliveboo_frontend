@@ -1,5 +1,5 @@
 <template lang="">
-    <main class="container">
+    <main class="container-fluid">
         <section class="container">
                     <select v-model="categoriesToFilter" @change="archetypeToFilter" name="selectCategory" id="selected-card" class="form-select" aria-label="Default select example">
                         <option value="all">Tutti</option>

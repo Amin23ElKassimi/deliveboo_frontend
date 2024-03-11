@@ -1,33 +1,33 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 import AppHome from './pages/HomePage.vue';
-import ProjectList from './pages/ProjectList.vue';
-import SingleProject from './pages/SingleProject.vue';
-import TechnologiesList from './pages/TechnologiesList.vue';
+import RestaurantList from './pages/RestaurantList.vue';
+import SingleRestaurant from './pages/SingleRestaurant.vue';
+import CategoriesList from './pages/CategoriesList.vue';
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-            {
-                path: '/',
-                name: 'home',
-                component: AppHome
-            },
-            {
-                path: '/blog',
-                name: 'projects',
-                component: ProjectList
-            },
-            {
-                path: '/blog',
-                name: 'project',
-                component: SingleProject
-            },
-            {
-                path: '/blog',
-                name: 'technologies',
-                component: TechnologiesList
-            },
-        ]
-    });
+        {
+            path: '/',
+            name: 'home',
+            component: AppHome
+        },
+        {
+            path: '/blog',
+            name: 'restaurants',
+            component: RestaurantList
+        },
+        {
+            path: '/blog',
+            name: 'restaurant',
+            component: SingleRestaurant
+        },
+        {
+            path: '/categories',
+            name: 'categories',
+            component: CategoriesList
+        },
+    ]
+});
 export { router };

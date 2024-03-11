@@ -2,17 +2,17 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
             <div class="container">
-                <a class="navbar-brand" href="#">DeliveBoo</a>
+                <a class="navbar-brand" href="http://localhost:5174/">DeliveBoo</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
-                        <li class="nav-item" v-for="(link, index) in linkItems" :key="index">
+                        <!-- <li class="nav-item" v-for="(link, index) in linkItems" :key="index">
                             <router-link :to="{ name: link.routeName }" class="nav-link">
                                 {{ link.label }}
                             </router-link>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
                 <form class="d-flex" role="search">
@@ -32,10 +32,10 @@ export default {
     data() {
         return {
             linkItems: [
-                {
-                    label: 'Home',
-                    routeName: 'home'
-                },
+                // {
+                //     label: 'Home',
+                //     routeName: 'home'
+                // },
                 {
                     label: 'Restaurants',
                     routeName: 'restaurants'

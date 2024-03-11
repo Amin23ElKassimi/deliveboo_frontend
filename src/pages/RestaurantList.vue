@@ -11,7 +11,6 @@
             <SingleCard class="card p-0 col-3 mx-4 my-5" v-for="restaurant in restaurants" v-show="elementToShow(restaurant.categories)" :key="restaurant.id"
         :name="restaurant.name" :vat="restaurant.vat" :address="restaurant.address"  :email="restaurant.email" :image_url="restaurant.image_url" :phone_number="restaurant.phone_number"/>            
         </div>
-        <p>{{ categories }}</p>
     </main>
 </template>
 
@@ -40,8 +39,8 @@ export default {
                 }
             })
             .then((response) => {
-                console.log('ristoranti', response.data.results1.data);
-                this.restaurants = response.data.results1.data;
+                console.log('ristoranti', response.data.results.data);
+                this.restaurants = response.data.results.data;
 
             })
             .catch(function (error) {
@@ -54,8 +53,8 @@ export default {
                 }
             })
             .then((response) => {
-                console.log('categorie', response.data.results1);
-                this.categories = response.data.results1;
+                console.log('categorie', response.data.results);
+                this.categories = response.data.results.data;
 
             })
             .catch(function (error) {
@@ -113,6 +112,4 @@ main {
     .title{
         color: yellow;
     }
-
-
-</style>
+    </style>

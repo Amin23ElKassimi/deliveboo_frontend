@@ -8,18 +8,18 @@ import CategoriesList from './pages/CategoriesList.vue';
 const router = createRouter({
     history: createWebHistory(),
     routes: [
+        // {
+        //     path: '/',
+        //     name: 'home',
+        //     component: AppHome
+        // },
         {
             path: '/',
-            name: 'home',
-            component: AppHome
-        },
-        {
-            path: '/blog',
             name: 'restaurants',
             component: RestaurantList
         },
         {
-            path: '/blog',
+            path: '/restaurant/:id',
             name: 'restaurant',
             component: SingleRestaurant
         },

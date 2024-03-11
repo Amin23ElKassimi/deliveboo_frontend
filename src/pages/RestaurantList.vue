@@ -1,16 +1,17 @@
 <template lang="">
     <main class="container">
         <section class="container">
-                    <select name="selectCategory" id="selected-card" class="form-select" aria-label="Default select example">
-                        <option value="All">Tutti</option>
-                        <option v-for="restaurant in restaurants"></option>
+                    <select v-model="categoriesToFilter" @change="archetypeToFilter" name="selectCategory" id="selected-card" class="form-select" aria-label="Default select example">
+                        <option value="all">Tutti</option>
+                        <option v-for="category in categories" :value="category.name">{{ category.name }}</option>
                 </select>
                 </section>
         <!-- Lista Film da stampare come Cards -->
         <div class="lista row justify-content-center"> 
-            <SingleCard class="card p-0 col-3 mx-4 my-5" v-for="restaurant in restaurants" :key="restaurant.id"
+            <SingleCard class="card p-0 col-3 mx-4 my-5" v-for="restaurant in restaurants" v-show="elementToShow(restaurant.categories)" :key="restaurant.id"
         :name="restaurant.name" :vat="restaurant.vat" :address="restaurant.address"  :email="restaurant.email" :image_url="restaurant.image_url" :phone_number="restaurant.phone_number"/>            
         </div>
+        <p>{{ categories }}</p>
     </main>
 </template>
 
@@ -28,6 +29,7 @@ export default {
         return{
             restaurants: [],
             categories: [],
+            categoriesToFilter: 'all',
         }
     },
 
@@ -45,13 +47,35 @@ export default {
             .catch(function (error) {
                 console.warn(error);
             })
-        }
+        },
+        getCategories(){
+            axios.get('http://127.0.0.1:8000/api/categories', {
+                params: {
+                }
+            })
+            .then((response) => {
+                console.log('categorie', response.data.results1);
+                this.categories = response.data.results1;
+
+            })
+            .catch(function (error) {
+                console.warn(error);
+            })
+        },
+        elementToShow(categories) {
+            if (this.categoriesToFilter == 'all') {
+                return true;
+            } else {
+                return categories.some(category => category.name === this.categoriesToFilter);
+            }
+        },
     },
     components:{
         SingleCard
     },
     created(){
         this.getRestaurants();
+        this.getCategories();
     }
 }
 </script>

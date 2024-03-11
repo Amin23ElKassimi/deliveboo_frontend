@@ -1,9 +1,15 @@
 <template lang="">
     <main class="container">
+        <section class="container">
+                    <select name="selectCategory" id="selected-card" class="form-select" aria-label="Default select example">
+                        <option value="All">Tutti</option>
+                        <option v-for="restaurant in restaurants"></option>
+                </select>
+                </section>
         <!-- Lista Film da stampare come Cards -->
         <div class="lista row justify-content-center"> 
-            <SingleCard class="card p-0 col-3 mx-4 my-5" v-for="project in projects" :key="project.id"
-        :title="project.name" :image="project.view" :content="project.description" />                                                         
+            <SingleCard class="card p-0 col-3 mx-4 my-5" v-for="restaurant in restaurants" :key="restaurant.id"
+        :name="restaurant.name" :vat="restaurant.vat" :address="restaurant.address"  :email="restaurant.email" :image_url="restaurant.image_url" :phone_number="restaurant.phone_number"/>            
         </div>
     </main>
 </template>
@@ -16,23 +22,24 @@ import SingleCard from '@/components/SingleCard.vue';
 import axios from 'axios';
 
 export default {
-    name: 'AppMain',
+    name: 'RestaurantList',
 
     data(){
         return{
-            projects: [],
+            restaurants: [],
+            categories: [],
         }
     },
 
     methods:{
-        getProjects(){
-            axios.get('http://127.0.0.1:8000/api/projects', {
+        getRestaurants(){
+            axios.get('http://127.0.0.1:8000/api/restaurants', {
                 params: {
                 }
             })
             .then((response) => {
-                console.log(response.data.results.data);
-                this.projects = response.data.results.data;
+                console.log('ristoranti', response.data.results1.data);
+                this.restaurants = response.data.results1.data;
 
             })
             .catch(function (error) {
@@ -44,7 +51,7 @@ export default {
         SingleCard
     },
     created(){
-        this.getProjects();
+        this.getRestaurants();
     }
 }
 </script>

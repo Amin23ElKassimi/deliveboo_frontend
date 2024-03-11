@@ -2,7 +2,7 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
             <div class="container">
-                <a class="navbar-brand" href="#">Boolpress</a>
+                <a class="navbar-brand" href="#">DeliveBoo</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -15,13 +15,20 @@
                         </li>
                     </ul>
                 </div>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-warning" type="submit">Ricerca</button>
+                </form>
             </div>
         </nav>
     </header>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
+    name:'AppHeader',
     data() {
         return {
             linkItems: [
@@ -30,16 +37,16 @@ export default {
                     routeName: 'home'
                 },
                 {
-                    label: 'Projects',
-                    routeName: 'projects'
+                    label: 'Restaurants',
+                    routeName: 'restaurants'
                 },
                 {
-                    label: 'Technologies',
-                    routeName: 'technologies'
+                    label: 'Categories',
+                    routeName: 'categories'
                 }
             ]
         }
-    },
+    },    
 }
 </script>
 

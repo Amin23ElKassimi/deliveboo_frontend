@@ -1,13 +1,14 @@
+
 <template lang="">
     <div class="container">
         <h1>
-            Technologies List:
+            Single Restaurant :
         </h1>
     </div>
 </template>
 <script>
 export default {
-    name: 'CategoriesList'
+    name: 'SingleRestaurant'
 }
 </script>
 <style lang="">

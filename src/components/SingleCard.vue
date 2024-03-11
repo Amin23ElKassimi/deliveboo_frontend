@@ -1,28 +1,26 @@
 <template lang="">
-    <div>
-        <div class="card-body">
-            <h1 class="card-title mb-3">
-                {{ title }}
-            </h1>
-
-
-            <img v-if="image" :src="image" class="card-img-top mb-3" :class="fullLength ? '' : 'image-preview'" alt="...">
-
-            <p class="card-text" v-if="fullLength">
-                {{ content }}
-            </p>
-            <p v-else>
-                {{ content.substring(0, 120) }}...
-            </p>
-
-
-            <div class="w-100 d-flex mb-3" v-if="linkRoute">
-                <router-link :to="linkRoute" class="btn btn-primary">
-                    {{ linkLabel }}
-                </router-link>
-            </div>
-        </div>
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" :src="image_url" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{ name }}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">{{ address }}</h6>
+      <p class="card-text">{{ phone_number }}</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
     </div>
+</div>
+<!-- <img v-if="image" :src="image" class="card-img-top mb-3" :class="fullLength ? '' : 'image-preview'" alt="...">
+<p class="card-text" v-if="fullLength">
+    {{ vat }}
+</p>
+<p v-else>
+    {{ content.substring(0, 120) }}...
+</p> -->
+<!-- <div class="w-100 d-flex mb-3" v-if="linkRoute">
+    <router-link :to="linkRoute" class="btn btn-primary">
+        {{ linkLabel }}
+    </router-link>
+</div> -->
+
 </template>
 <script>
 export default {
@@ -32,30 +30,46 @@ export default {
         }
     },
     props:{
-        title: {
+        name: {
             required: true,
             type: String,
         },
-        content: {
+        vat: {
             required: true,
             type: String,
         },
-        image: {
+        address: {
             required: true,
             type: String,
         },
-        linkRoute: {
-            required: false,
-            type: [ Object, String ]
-        },
-        linkLabel: {
-            required: false,
+        email: {
+            required: true,
             type: String,
         },
-        fullLength: {
-            required: false,
-            type: Boolean,
+        image_url: {
+            required: true,
+            type: String,
         },
+        phone_number: {
+            required: true,
+            type: String,
+        },
+        vat: {
+            required: true,
+            type: String,
+        },
+        // linkRoute: {
+        //     required: false,
+        //     type: [ Object, String ]
+        // },
+        // linkLabel: {
+        //     required: false,
+        //     type: String,
+        // },
+        // fullLength: {
+        //     required: false,
+        //     type: Boolean,
+        // },
     }
 }
 </script>

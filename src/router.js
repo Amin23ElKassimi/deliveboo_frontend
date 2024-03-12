@@ -7,6 +7,7 @@ import CategoriesList from './pages/CategoriesList.vue';
 import FoodItemList from './pages/FoodItemList.vue';
 
 
+
 const router = createRouter({
     history: createWebHistory(),
     routes: [
@@ -16,7 +17,7 @@ const router = createRouter({
         //     component: AppHome
         // },
         {
-            path: '/',
+            path: '/restaurants',
             name: 'restaurants',
             component: RestaurantList
         },
@@ -35,6 +36,7 @@ const router = createRouter({
             name: 'fooditems',
             component: FoodItemList
         },
+
     ]
 });
 export { router };

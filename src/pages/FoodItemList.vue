@@ -1,47 +1,41 @@
 <template lang="">
     <main class="container-fluid">
-        <section class="container">
-                    <select v-model="categoriesToFilter" @change="archetypeToFilter" name="selectCategory" id="selected-card" class="form-select" aria-label="Default select example">
-                        <option value="all">Tutti</option>
-                        <option v-for="category in categories" :value="category.name">{{ category.name }}</option>
-                </select>
-                </section>
         <!-- Lista Film da stampare come Cards -->
         <div class="lista row justify-content-center"> 
-            <SingleCard class="card p-0 col-3 mx-4 my-5" v-for="restaurant in restaurants" v-show="elementToShow(restaurant.categories)" :key="restaurant.id"
-        :name="restaurant.name" :vat="restaurant.vat" :address="restaurant.address"  :email="restaurant.email" :image_url="restaurant.image_url" :phone_number="restaurant.phone_number"/>            
+            <div class="card cards" v-for="fooditem in fooditems" style="width: calc(100% / 4);">
+                <img :src="fooditem.image_url" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title"  >{{ fooditem.name }}</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>    
+                </div>
+             </div>
         </div>
     </main>
 </template>
 
 
 <script>
-// Import Azion
-import SingleCard from '@/components/SingleCard.vue';
-
 import axios from 'axios';
 
 export default {
-    name: 'RestaurantList',
+    name: 'FoodItemList',
 
     data(){
         return{
-            restaurants: [],
-            categories: [],
-            categoriesToFilter: 'all',
+            fooditems: [],
         }
     },
 
     methods:{
         getFoodItems(){
-            axios.get('http://127.0.0.1:8000/api/FoodItems', {
+            axios.get('http://127.0.0.1:8000/api/foodItems', {
                 params: {
                 }
             })
             .then((response) => {
-                console.log('ristoranti', response.data.results.data);
-                this.restaurants = response.data.results.data;
-
+                console.log(response.data.results);
+                this.fooditems = response.data.results;
             })
             .catch(function (error) {
                 console.warn(error);
@@ -50,19 +44,16 @@ export default {
 
     },
 
-    components:{
-        SingleCard
-    },
 
     created(){
-        this.getRestaurants();
-        this.getCategories();
+        this.getFoodItems();
     }
 }
 </script>
 
 
 <style lang="scss" scoped>
+
 @use '../styles/partials/variables.scss' as *;
 
 img{
@@ -87,8 +78,9 @@ main {
         margin-right: .5rem;
         margin-bottom: 1rem;
         background-color: $primary-bg;
-        background-color: #521c76;
+        background-color: #1a6b1e;
         text-align: center;
+        border-radius: 20px;
     }
 
     .title{

@@ -7,9 +7,9 @@
                 <div class="card-body">
                     <h5 class="card-title"  >{{ fooditem.name }}</h5>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>    
+                </div>
+             </div>
         </div>
     </main>
 </template>
@@ -53,6 +53,7 @@ export default {
 
 
 <style lang="scss" scoped>
+
 @use '../styles/partials/variables.scss' as *;
 
 img{

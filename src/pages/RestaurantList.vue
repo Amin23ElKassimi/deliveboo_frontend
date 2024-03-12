@@ -1,15 +1,19 @@
 <template lang="">
     <main class="container-fluid">
         <section class="container">
-                    <select v-model="categoriesToFilter" @change="archetypeToFilter" name="selectCategory" id="selected-card" class="form-select" aria-label="Default select example">
-                        <option value="all">Tutti</option>
-                        <option v-for="category in categories" :value="category.name">{{ category.name }}</option>
-                </select>
-                </section>
-        <!-- Lista Film da stampare come Cards -->
+                    <div class="row mb-3">
+                        <input type="text" class="rounded col-10 mb-3" v-model="searchQuery" placeholder="Cerca per nome del ristorante..." @input="searchCharacters">
+                        
+                        <select v-model="categoriesToFilter" @change="archetypeToFilter" name="selectCategory" id="selected-card" class="form-select" aria-label="Default select example">
+                            <option value="all">Tutti</option>
+                            <option v-for="category in categories" :value="category.name">{{ category.name }}</option>
+                        </select>
+                    </div>
+        </section>
+                <!-- Lista Film da stampare come Cards -->
         <div class="lista row justify-content-center"> 
-            <SingleCard class="card p-0 col-3 mx-4 my-5" v-for="restaurant in restaurants" v-show="elementToShow(restaurant.categories)" :key="restaurant.id"
-        :name="restaurant.name" :vat="restaurant.vat" :address="restaurant.address"  :email="restaurant.email" :image_url="restaurant.image_url" :phone_number="restaurant.phone_number"/>            
+            <SingleCard class="card p-0 col-3 mx-4 my-5" v-for="restaurant in filteredRestaurants" v-show="elementToShow(restaurant.categories)" :key="restaurant.id"
+                :name="restaurant.name" :vat="restaurant.vat" :address="restaurant.address"  :email="restaurant.email" :image_url="restaurant.image_url" :phone_number="restaurant.phone_number"/>            
         </div>
     </main>
 </template>
@@ -26,9 +30,20 @@ export default {
 
     data(){
         return{
+            searchQuery: '',
             restaurants: [],
             categories: [],
             categoriesToFilter: 'all',
+        }
+    },
+
+    computed: {
+        filteredRestaurants() {
+            if (!this.searchQuery) return this.restaurants;
+            console.log(this.restaurants);
+                return this.restaurants.filter(restaurant =>
+                    restaurant.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+                );
         }
     },
 
@@ -67,6 +82,10 @@ export default {
             } else {
                 return categories.some(category => category.name === this.categoriesToFilter);
             }
+        },
+        searchCharacters() {
+                // La ricerca avviene automaticamente grazie alla computed property filteredCharacters
+            
         },
     },
     components:{
@@ -111,5 +130,9 @@ main {
 
     .title{
         color: yellow;
+    }
+
+    .form-select{
+        width: 75%;
     }
     </style>

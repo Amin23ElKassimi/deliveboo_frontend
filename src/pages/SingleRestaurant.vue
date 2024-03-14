@@ -1,9 +1,7 @@
 <template lang="">
-    <main class="container">
-        
-        <section class="row justify-content-center">
-            <div class="d-flex justify-content-end">
-                <button class="btn btn-warning mt-3 position-fixed" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Carrello</button>
+    <div>
+        <div class="d-flex justify-content-end">
+                <button class="btn btn-primary me-5 mt-4 position-fixed" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><i class="fa-solid fa-basket-shopping"></i></button>
 
                 <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
                 <div class="offcanvas-header">
@@ -18,6 +16,11 @@
                     </div>
                 </div>
             </div>
+    </div>
+    <main class="container">
+        
+        <section class="row justify-content-center">
+            
 
             <SingleCard class="p-0 col-12 mx-4 my-5" @carrelloAggiornato="aggiornaCarrelloPadre"
             :name="restaurant.name" :vat="restaurant.vat"
@@ -73,12 +76,11 @@ export default {
             })
         },
         aggiornaCarrelloPadre(carrelloAggiornato) {
-        this.carrello = carrelloAggiornato;
-        console.log(this.carrello)
-        localStorage.setItem('carrello', JSON.stringify(this.carrello)); // Salva il carrello nel localStorage del padre
+            this.carrello = carrelloAggiornato;
+            console.log(this.carrello)
+            localStorage.setItem('carrello', JSON.stringify(this.carrello));
         },
         svuotaCarrello() {
-            // Svuota il carrello e cancella i dati dal localStorage
             this.carrello = [];
             localStorage.removeItem('carrello');
         }

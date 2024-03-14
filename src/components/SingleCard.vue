@@ -36,7 +36,7 @@
 
     </div>
     <!-- Lista Film da stampare come Cards -->
-    <div v-for="fooditem in menu">
+    <div class="mb-3" v-for="fooditem in menu">
         <img :src="fooditem.image_url" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">{{ fooditem.name }}</h5>

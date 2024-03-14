@@ -117,11 +117,6 @@
                     this.carrello = JSON.parse(carrello);
                 }
             },
-            svuotaCarrello() {
-                // Svuota il carrello e cancella i dati dal localStorage
-                this.carrello = [];
-                localStorage.removeItem('carrello');
-            },
             aggiungiAlCarrelloEMandaEvento(pietanza) {
                 this.aggiungiAlCarrello((pietanza)); // Aggiunge la pietanza al carrello
                 this.$emit('carrelloAggiornato', this.carrello); // Emite l'evento con il carrello aggiornato

@@ -2,8 +2,8 @@
     <main class="container">
         
         <section class="row justify-content-center">
-            <div>
-                <button class="btn btn-warning" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Carrello</button>
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-warning mt-3 position-fixed" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Carrello</button>
 
                 <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
                 <div class="offcanvas-header">
@@ -81,8 +81,6 @@ export default {
             // Svuota il carrello e cancella i dati dal localStorage
             this.carrello = [];
             localStorage.removeItem('carrello');
-            // Emetti l'evento per indicare al componente figlio di svuotare il carrello
-            this.$emit('carrelloSvuotato');
         }
     },
     components:{

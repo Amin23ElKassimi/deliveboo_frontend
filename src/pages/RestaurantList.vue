@@ -10,7 +10,7 @@
                 </select>
             </div>
         </section>
-                <!-- Lista Film da stampare come Cards -->
+                <!-- Lista Ristoranti da stampare come Cards -->
         <div class="lista row justify-content-center"> 
             <SingleCard  v-for="restaurant in filteredRestaurants" v-show="elementToShow(restaurant.categories)" :key="restaurant.id"
                 :name="restaurant.name" :vat="restaurant.vat"

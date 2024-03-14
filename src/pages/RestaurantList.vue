@@ -1,9 +1,9 @@
 <template lang="">
     <main class="container-fluid">
         <section class="container">
+            <!-- Search by name -->
             <div class="row mb-3">
                 <input type="text" class="rounded col-10 mb-3" v-model="searchQuery" placeholder="Cerca per nome del ristorante..." @input="searchCharacters">
-                
                 <select v-model="categoriesToFilter" @change="archetypeToFilter" name="selectCategory" id="selected-card" class="form-select" aria-label="Default select example">
                     <option value="all">Tutti</option>
                     <option v-for="category in categories" :value="category.name">{{ category.name }}</option>

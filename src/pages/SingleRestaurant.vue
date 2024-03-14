@@ -10,7 +10,12 @@
                 </div>
                     <div class="offcanvas-body">
                         <ul  class="list-group">
-                        <li v-for="articolo in carrello" class="list-group-item">{{ articolo.name }}</li>
+                        <li v-for="articolo in carrello" class="list-group-item">
+                        <div class="d-flex justify-content-between">
+                            <p>{{ articolo.name }}</p>
+                            <p>{{ articolo.price }} €</p>
+                        </div>
+                        </li>
                         </ul>
                         <button class="btn btn-primary" @click="svuotaCarrello()">Invio</button>
                     </div>

@@ -41,6 +41,7 @@
         <div class="card-body">
             <h5 class="card-title">{{ fooditem.name }}</h5>
             <p class="card-text">{{ fooditem.description }}</p>
+            <p class="card-text">{{ fooditem.price }} €</p>
             <!-- <button class="btn btn-primary" @click="aggiungiAlCarrello(fooditem)">Acquista</button>     -->
             <button class="btn btn-primary" @click="aggiungiAlCarrelloEMandaEvento(fooditem)">Acquista</button>
         </div>

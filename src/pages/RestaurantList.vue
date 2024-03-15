@@ -20,7 +20,7 @@
           :address="restaurant.address" :email="restaurant.email"
           :image_url="restaurant.image_url" :phone_number="restaurant.phone_number"
           :linkRoute="{ name: 'single-restaurant', params: { id: restaurant.id}}" linkLabel="Menu" />
-      </div>  
+      </div>
     </main>
   </template>
   

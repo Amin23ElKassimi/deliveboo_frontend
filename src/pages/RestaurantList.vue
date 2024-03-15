@@ -1,20 +1,24 @@
 <template lang="">
     <main class="container-fluid">
         <section class="container">
-                    <div class="row mb-3">
-                        <input type="text" class="rounded col-10 mb-3" v-model="searchQuery" placeholder="Cerca per nome del ristorante..." @input="searchCharacters">
-                        
-                        <select v-model="categoriesToFilter" @change="archetypeToFilter" name="selectCategory" id="selected-card" class="form-select" aria-label="Default select example">
-                            <option value="all">Tutti</option>
-                            <option v-for="category in categories" :value="category.name">{{ category.name }}</option>
-                        </select>
-                    </div>
+            <div class="row mb-3">
+                <input type="text" class="rounded col-10 mb-3" v-model="searchQuery" placeholder="Cerca per nome del ristorante..." @input="searchCharacters">
+                
+                <select v-model="categoriesToFilter" @change="archetypeToFilter" name="selectCategory" id="selected-card" class="form-select" aria-label="Default select example">
+                    <option value="all">Tutti</option>
+                    <option v-for="category in categories" :value="category.name">{{ category.name }}</option>
+                </select>
+            </div>
         </section>
-                <!-- Lista Film da stampare come Cards -->
+                <!-- Lista Ristoranti da stampare come Cards -->
         <div class="lista row justify-content-center"> 
-            <SingleCard class="card p-0 col-3 mx-4 my-5" v-for="restaurant in filteredRestaurants" v-show="elementToShow(restaurant.categories)" :key="restaurant.id"
-                :name="restaurant.name" :vat="restaurant.vat" :address="restaurant.address"  :email="restaurant.email" :image_url="restaurant.image_url" :phone_number="restaurant.phone_number"/>            
-        </div>
+            <SingleCard  v-for="restaurant in filteredRestaurants" v-show="elementToShow(restaurant.categories)" :key="restaurant.id"
+                :name="restaurant.name" :vat="restaurant.vat"
+                :category="restaurant.categories.name"
+                :address="restaurant.address"  :email="restaurant.email"
+                :image_url="restaurant.image_url" :phone_number="restaurant.phone_number"
+                :linkRoute="{ name: 'single-restaurant', params: { id: restaurant.id}}" linkLabel="Menu"  />            
+        </div>  
     </main>
 </template>
 
@@ -22,6 +26,8 @@
 <script>
 // Import Azion
 import SingleCard from '@/components/SingleCard.vue';
+import SingleRestaurant from './SingleRestaurant.vue';
+
 
 import axios from 'axios';
 
@@ -89,7 +95,8 @@ export default {
         },
     },
     components:{
-        SingleCard
+        SingleCard,
+        SingleRestaurant
     },
     created(){
         this.getRestaurants();

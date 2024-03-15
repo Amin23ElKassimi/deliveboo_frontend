@@ -1,4 +1,5 @@
 <template lang="">
+    <!-- Filtri -->
     <div>
         <div class="d-flex justify-content-end">
                 <button class="btn btn-primary me-5 mt-4 position-fixed" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><i class="fa-solid fa-basket-shopping"></i></button>
@@ -22,12 +23,10 @@
                 </div>
             </div>
     </div>
+    <!-- Ristonranti -->
     <main class="container">
-        
         <section class="row justify-content-center">
-            
-
-            <SingleCard class="p-0 col-12 mx-4 my-5" @carrelloAggiornato="aggiornaCarrelloPadre"
+            <SingleMenu class="p-0 col-12 mx-4 my-5" @carrelloAggiornato="aggiornaCarrelloPadre"
             :name="restaurant.name" :vat="restaurant.vat"
             :menu="restaurant.food_item"
             :address="restaurant.address"  :email="restaurant.email"
@@ -37,48 +36,48 @@
 </template>
 
 <script>
-import SingleCard from '@/components/SingleCard.vue';
+import SingleMenu from '@/components/SingleMenu.vue';
 
 import axios from 'axios';
 
 export default {
     name: 'PostList',
-    data(){
-        return{
+    data() {
+        return {
             restaurants: [],
             restaurant: {},
             id: '',
             carrello: JSON.parse(localStorage.getItem('carrello')) || [] // Carica il carrello dall'localStorage
         }
     },
-    methods:{
-        getResturant(){
+    methods: {
+        getResturant() {
             axios.get(`http://127.0.0.1:8000/api/restaurants/${this.$route.params.id}`, {
                 params: {
                 }
             })
-            .then((response) => {
-                console.log(this.$route.params.id);
-                // console.log(response.data.results);
-                this.restaurant = response.data.results;
+                .then((response) => {
+                    console.log(this.$route.params.id);
+                    // console.log(response.data.results);
+                    this.restaurant = response.data.results;
 
-            })
-            .catch(function (error) {
-                console.warn(error);
-             })
+                })
+                .catch(function (error) {
+                    console.warn(error);
+                })
         },
-        getFoodItems(){
+        getFoodItems() {
             axios.get('http://127.0.0.1:8000/api/foodItems', {
                 params: {
                 }
             })
-            .then((response) => {
-                // console.log(response.data.results);
-                this.fooditems = response.data.results;
-            })
-            .catch(function (error) {
-                console.warn(error);
-            })
+                .then((response) => {
+                    // console.log(response.data.results);
+                    this.fooditems = response.data.results;
+                })
+                .catch(function (error) {
+                    console.warn(error);
+                })
         },
         aggiornaCarrelloPadre(carrelloAggiornato) {
             this.carrello = carrelloAggiornato;
@@ -90,11 +89,11 @@ export default {
             localStorage.removeItem('carrello');
         }
     },
-    components:{
-        SingleCard,
+    components: {
+        SingleMenu,
     },
 
-    props:{
+    props: {
         name: {
             required: true,
             type: String,
@@ -109,7 +108,7 @@ export default {
         },
     },
 
-    created(){
+    created() {
         console.log(this.menu);
         this.getResturant();
         this.getFoodItems();
@@ -117,5 +116,4 @@ export default {
 }
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

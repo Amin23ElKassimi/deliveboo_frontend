@@ -1,7 +1,8 @@
 <template>
   <div>
     <div v-for="category in categories" :key="category.id" class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" :id="'inlineCheckbox' + category.id" :value="category.name" v-model="selectedCategories" @change="applyFilters">
+      <input class="form-check-input" type="checkbox" :id="'inlineCheckbox' + category.id" :value="category.name"
+        v-model="selectedCategories" @change="applyFilters">
       <label class="form-check-label" :for="'inlineCheckbox' + category.id">{{ category.name }}</label>
     </div>
   </div>

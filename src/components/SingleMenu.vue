@@ -1,34 +1,39 @@
 <template lang="">
-    <div id="cards" class="card style">
-    <img class="card-img-top" :src="image_url" alt="Card image cap">
-    <div class="card-body">
-        <h5 class="card-title">{{ name }}</h5>
-        <div v-for="(categor, index) in category" :key="index">
-            <h6 class="card-subtitle mb-2 text-muted">{{ categor.name }}</h6>
+    <!-- Info ristorante -->
+    <div id="restaurant-info" class="restaurant-info">
+        <img class="restaurant-img" :src="image_url" alt="Restaurant image">
+        <div class="restaurant-details">
+            <h5 class="restaurant-name">{{ name }}</h5>
+            <div v-for="(category, index) in categories" :key="index">
+                <span class="badge bg-primary">{{ category.name }}</span>
+            </div>
+            <h6 class="restaurant-address text-muted">{{ address }}</h6>
+            <p class="restaurant-phone">{{ phone_number }}</p>
+            <div class="restaurant-link" v-if="linkRoute">
+                <router-link :to="linkRoute" class="btn btn-primary">
+                    {{ linkLabel }}
+                </router-link>
+            </div>
         </div>
-        <h6 class="card-subtitle mb-2 text-muted">{{ address }}</h6>
-        <p class="card-text">{{ phone_number }}</p>
-        <div class="w-100 d-flex mb-3" v-if="linkRoute">
-            <router-link :to="linkRoute" class="btn btn-primary">
-                {{ linkLabel }}
-            </router-link>
+    </div>
+
+<!-- Lista Piatto da stampare come Cards -->
+<div class="mb-3 d-flex flex-wrap">
+    <div class="card col-md-4 mb-4 mx-2" v-for="fooditem in menu" :key="fooditem.id">
+        <img :src="fooditem.image_url" class="card-img-top" alt="...">
+        <div class="card-body px-3">
+            <h5 class="card-title">{{ fooditem.name }}</h5>
+            <p class="card-text">{{ fooditem.description }}</p>
+            <p class="card-text">{{ fooditem.price }} €</p>
+            <button class="btn btn-success" @click="aggiungiAlCarrelloEMandaEvento(fooditem)">Aggiungi al
+                carrello</button>
         </div>
     </div>
 </div>
 
-    <!-- Lista Film da stampare come Cards -->
-    <div class="mb-3" v-for="fooditem in menu">
-        <img :src="fooditem.image_url" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">{{ fooditem.name }}</h5>
-            <p class="card-text">{{ fooditem.description }}</p>
-            <p class="card-text">{{ fooditem.price }} €</p>
-            <!-- <button class="btn btn-primary" @click="aggiungiAlCarrello(fooditem)">Acquista</button>     -->
-            <button class="btn btn-primary" @click="aggiungiAlCarrelloEMandaEvento(fooditem)">Acquista</button>
-        </div>
-    </div>
-</template>
 
+
+</template>
 <script>
 export default {
     data() {
@@ -122,18 +127,94 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-img {
+        .restaurant-info {
+        display: flex;
+        margin-bottom: 20px;
+    }
+
+    .restaurant-img {
+        flex: 0 0 200px;
+        height: 200px;
+        object-fit: cover;
+        margin-right: 20px;
+    }
+
+    .restaurant-details {
+        flex-grow: 1;
+    }
+
+    .restaurant-name {
+        font-size: 1.25rem;
+        margin-bottom: 5px;
+    }
+
+    .restaurant-address {
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+    }
+
+    .restaurant-phone {
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+    }
+
+    .restaurant-link {
+        margin-top: auto;
+    }
+
+    @media (max-width: 768px) {
+        .restaurant-info {
+            flex-direction: column;
+        }
+
+        .restaurant-img {
+            margin-right: 0;
+            margin-bottom: 10px;
+            width: 100%;
+            height: auto;
+        }
+    }
+  img {
     height: 400px;
     object-fit: cover;
     margin-bottom: 3rem;
-}
+  }
 
-img.image-preview {
+  img.image-preview {
     height: 200px;
-}
+  }
 
-#cards {
-    width: 18rem;
-    margin: 1rem;
-}
+  .card {
+    margin-bottom: 1.5rem;
+    width: calc(33.333% - 1rem); /* Imposta la larghezza per avere tre cards per riga */
+  }
+
+  .card-img-top {
+    height: 200px; /* Altezza delle immagini delle cards */
+    object-fit: cover;
+  }
+
+  .card-title {
+    font-size: 1.25rem; /* Dimensione del titolo */
+  }
+
+  .card-text {
+    font-size: 1rem; /* Dimensione del testo */
+  }
+
+  .card-body {
+    padding: 1rem; /* Padding del corpo delle cards */
+  }
+
+  .card-deck {
+    display: flex;
+    flex-wrap: wrap; /* Per le righe da tre cards */
+    justify-content: space-between; /* Spaziatura laterale tra le cards */
+  }
+
+  @media (max-width: 768px) {
+    .card {
+      width: calc(50% - 1rem); /* Imposta due cards per riga su dispositivi più piccoli */
+    }
+  }
 </style>

@@ -5,10 +5,7 @@
         <!-- Componente FilterRadios per i filtri -->
         <FilterRadios :categories="categories" @filter="handleFilter" />
   
-        <!-- Ricerca per nome -->
-        <div class="row mb-3">
-          <input type="text" class="rounded col-10 mb-3" v-model="searchQuery" placeholder="Cerca per nome del ristorante..." @input="searchCharacters">
-        </div>
+
       </section>
   
       <!-- Lista di SingleCard da stampare -->
@@ -70,40 +67,39 @@ export default {
 
     // Determina se mostrare un elemento in base alla categoria selezionata
     elementToShow(categories) {
-      if (this.categoriesToFilter === 'all') {
-        return true; // Mostra tutti se la categoria selezionata è 'all'
+      if (this.categoriesToFilter.length === 0) {
+        return true; // Mostra tutti se nessuna categoria è selezionata
       } else {
-        // Verifica se l'array delle categorie selezionate è incluso completamente nell'array delle categorie del ristorante
-        return this.categoriesToFilter.every(category =>
-          categories.some(c => c.name === category)
-        );
+        // Verifica se almeno una categoria selezionata è inclusa nell'array delle categorie del ristorante
+        return categories.some(c => this.categoriesToFilter.includes(c.name));
       }
     },
-
     // Gestisce il filtro delle categorie
     handleFilter(selectedCategories) {
+      // Se nessuna categoria è selezionata, reimposta categoriesToFilter a 'all'
       if (selectedCategories.length === 0) {
-        // Se nessuna categoria è selezionata, mostra tutti i ristoranti
-        this.filteredItems = this.restaurants;
+        this.categoriesToFilter = 'all';
       } else {
-        // Altrimenti, filtra gli elementi in base alle categorie selezionate
-        this.filteredItems = this.restaurants.filter(restaurant =>
-          selectedCategories.every(category =>
+        // Altrimenti, reimposta categoriesToFilter con le categorie selezionate
+        this.categoriesToFilter = selectedCategories;
+      }
+
+      this.filteredItems = this.categoriesToFilter === 'all'
+        ? this.restaurants
+        : this.restaurants.filter(restaurant =>
+          this.categoriesToFilter.every(category =>
             restaurant.categories.some(c => c.name === category)
           )
         );
+
+      // Controlla se la ricerca per nome è attiva
+      if (this.searchQuery) {
+        this.searchCharacters();
       }
     },
 
-    // Gestisce la ricerca per nome
-    searchCharacters() {
-      if (this.categoriesToFilter === 'all') {
-        // Altrimenti, esegui la ricerca solo sui ristoranti filtrati dalle categorie selezionate
-        this.filteredItems = this.filteredItems.filter(restaurant =>
-          restaurant.name.toLowerCase().includes(this.searchQuery.toLowerCase())
-        );
-      }
-    }
+
+
   },
 
   // Componenti da importare 

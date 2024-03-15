@@ -16,7 +16,7 @@
         <!-- Iterazione su tutte le SingleCard filtrate -->
         <SingleCard v-for="restaurant in filteredItems" v-show="elementToShow(restaurant.categories)" :key="restaurant.id"
           :name="restaurant.name" :vat="restaurant.vat"
-          :category="restaurant.categories.name"
+          :category="restaurant.categories"
           :address="restaurant.address" :email="restaurant.email"
           :image_url="restaurant.image_url" :phone_number="restaurant.phone_number"
           :linkRoute="{ name: 'single-restaurant', params: { id: restaurant.id}}" linkLabel="Menu" />

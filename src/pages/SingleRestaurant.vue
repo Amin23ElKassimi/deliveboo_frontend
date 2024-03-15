@@ -1,7 +1,13 @@
 <template lang="">
     <div>
         <div class="d-flex justify-content-end">
-                <button class="btn btn-primary me-5 mt-4 position-fixed" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><i class="fa-solid fa-basket-shopping"></i></button>
+                <button class="btn btn-primary me-5 mt-4 position-fixed" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                    <span v-if="carrello.length > 0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    {{ carrello.length }}
+                    <span class="visually-hidden">Food items nel carrello</span>
+                    </span>
+                </button>
 
                 <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
                 <div class="offcanvas-header">
@@ -14,9 +20,11 @@
                         <div class="d-flex justify-content-between">
                             <p>{{ articolo.name }}</p>
                             <p>{{ articolo.price }} €</p>
+                            <button class="btn btn-danger btn-sm" @click="rimuoviDalCarrello(index)">Rimuovi</button>
                         </div>
                         </li>
                         </ul>
+                        <p class="fw-bold">Totale: {{ calcolaTotale() }} €</p>
                         <button class="btn btn-primary" @click="svuotaCarrello()">Invio</button>
                     </div>
                 </div>
@@ -88,6 +96,14 @@ export default {
         svuotaCarrello() {
             this.carrello = [];
             localStorage.removeItem('carrello');
+            console.log(localStorage)
+        },
+        calcolaTotale() {
+            return this.carrello.reduce((totale, articolo) => totale + parseFloat(articolo.price), 0).toFixed(2);
+        },
+        rimuoviDalCarrello(index) {
+            this.carrello.splice(index, 1); // Rimuove l'articolo dal carrello
+            localStorage.setItem('carrello', JSON.stringify(this.carrello)); // Aggiorna il carrello nell'localStorage
         }
     },
     components:{

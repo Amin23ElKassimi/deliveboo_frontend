@@ -1,9 +1,12 @@
 <template>
-  <div>
-    <div v-for="category in categories" :key="category.id" class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" :id="'inlineCheckbox' + category.id" :value="category.name"
-        v-model="selectedCategories" @change="applyFilters">
-      <label class="form-check-label" :for="'inlineCheckbox' + category.id">{{ category.name }}</label>
+  <div class="row d-flex justify-content-center">
+    <div class="col-10 text-center mb-3 container-category">
+      <h3>Filtra i Ristoranti per categoria e seleziona il ristorante che preferisci!</h3>
+      <div v-for="category in categories" :key="category.id" class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" :id="'inlineCheckbox' + category.id" :value="category.name"
+          v-model="selectedCategories" @change="applyFilters">
+        <label class="form-check-label" :for="'inlineCheckbox' + category.id">{{ category.name }}</label>
+      </div>
     </div>
   </div>
 </template>
@@ -35,5 +38,7 @@ export default {
 };
 </script>
 
-<style lang="">
+<style lang="scss" scoped>
+
+  
 </style>

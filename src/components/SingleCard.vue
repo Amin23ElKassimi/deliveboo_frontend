@@ -1,17 +1,21 @@
 <template lang="">
-    <div id="cards" class="card style">
-        <img class="card-img-top" :src="image_url" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">{{ name }}</h5>
-            <div v-for="(categor, index) in category" :key="index">
-                <h6 class="card-subtitle mb-2 text-muted">{{ categor.name }}</h6>
+    <div class="card flex-row col-10 col-sm-12 align-items-center rounded-pill p-3 mx-3 mb-4 border-0 shadow-lg">
+        <div class="rounded-circle overflow-hidden">
+            <img class="card-img-top align-self-center" :src="image_url" alt="Card image cap">
+        </div>
+        <div class="d-flex flex-lg-row flex-sm-column align-items-center justify-content-between flex-grow-1">
+            <div class="card-body align-self-center ms-3">
+                <h3 class="card-title fw-bold">{{ name }}</h3>
+                <span v-for="(categor, index) in category" :key="index">
+                    <span class="card-subtitle me-2 text-muted">{{ categor.name }}</span>
+                </span>
+                    <h6 class="card-subtitle mb-2 text-muted pt-3">{{ address }}</h6>
+                    <p class="card-text">{{ phone_number }}</p>
             </div>
-            <h6 class="card-subtitle mb-2 text-muted">{{ address }}</h6>
-            <p class="card-text">{{ phone_number }}</p>
-            <div class="w-100 d-flex mb-3" v-if="linkRoute">
-                <router-link :to="linkRoute" class="btn btn-primary">
-                    {{ linkLabel }}
-                </router-link>
+            <div class="h-100 d-flex mb-3 align-items-center" v-if="linkRoute">
+                    <router-link :to="linkRoute" class="btn btn-secondary rounded-pill me-5 fw-bold fs-5 shadow-lg">
+                        {{ linkLabel }}
+                    </router-link>
             </div>
         </div>
     </div>
@@ -126,17 +130,14 @@
 
 <style lang="scss" scoped>
     img {
+        width: 400px;
         height: 400px;
         object-fit: cover;
-        margin-bottom: 3rem;
+        object-position: center;
     }
 
     img.image-preview {
         height: 200px;
     }
 
-    #cards {
-        width: 18rem;
-        margin: 1rem;
-    }
 </style>

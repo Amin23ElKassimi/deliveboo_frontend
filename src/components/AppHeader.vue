@@ -1,5 +1,5 @@
 <template lang="">
-    <header>
+    <header class="mb-4 shadow-lg">
         <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
             <div class="container">
                 <a class="navbar-brand">DeliveBoo</a>

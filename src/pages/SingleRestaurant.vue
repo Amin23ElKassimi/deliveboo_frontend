@@ -31,7 +31,7 @@
                 </div>
             </div>
     </div>
-    <!-- Ristonranti -->
+    <!-- Ristoranti -->
     <main class="container">
         <section class="row justify-content-center">
             <SingleMenu class="p-0 col-12 mx-4 my-5" @carrelloAggiornato="aggiornaCarrelloPadre"

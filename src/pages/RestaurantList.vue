@@ -1,13 +1,11 @@
 <template lang="">
     <main class="container-fluid">
       <!-- Sezione principale -->
-      <section class="container">
         <!-- Componente FilterRadios per i filtri -->
         <FilterRadios :categories="categories" @filter="handleFilter" />
-      </section>
   
       <!-- Lista di SingleCard da stampare -->
-      <div class="lista row justify-content-center"> 
+      <div class="row flex-row justify-content-center mx-3"> 
         <!-- Iterazione su tutte le SingleCard filtrate -->
         <SingleCard v-for="restaurant in filteredItems" v-show="elementToShow(restaurant.categories)" :key="restaurant.id"
           :name="restaurant.name" :vat="restaurant.vat"

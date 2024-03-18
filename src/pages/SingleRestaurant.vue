@@ -2,7 +2,7 @@
     <!-- Filtri -->
     <div>
         <div class="d-flex justify-content-end">
-                <button class="btn btn-primary me-5 mt-4 position-fixed" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+                <button class="z-1 btn btn-primary me-5 mt-4 position-fixed" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
                     <i class="fa-solid fa-basket-shopping"></i>
                     <span v-if="carrello.length > 0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     {{ carrello.length }}

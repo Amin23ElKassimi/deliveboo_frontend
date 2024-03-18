@@ -109,8 +109,11 @@ export default {
             }
         },
         aggiungiAlCarrelloEMandaEvento(pietanza) {
-            this.aggiungiAlCarrello((pietanza)); // Aggiunge la pietanza al carrello
-            this.$emit('carrelloAggiornato', this.carrello); // Emite l'evento con il carrello aggiornato
+            const carrelloLocalStorage = JSON.parse(localStorage.getItem('carrello'));
+                this.carrello = carrelloLocalStorage || [];
+                this.carrello.push(pietanza);
+                localStorage.setItem('carrello', JSON.stringify(this.carrello));
+                this.$emit('carrelloAggiornato', this.carrello);
         },
     },
     mounted() {

@@ -5,12 +5,13 @@
 body{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     background-color: #40A3CA;
+    position: relative;
 }
 
 
 header{
     .navbar-graphic{
-        background-color: #40A3CA;
+        background-color: #57D0FF;
     }
 
     a{
@@ -21,8 +22,9 @@ header{
         color: white;
     }
 
-    .card-img{
-        height: 600px;
+    .jumbo-img{
+        height: 250px;
+        margin-bottom: 30px;
     }
 
     .card-img-logo{
@@ -36,5 +38,14 @@ header{
 .container-category{
     border: 4px solid #57d0ff;
     border-radius: 10px;
-  }
+    padding: 40px;
+}
+
+.category-checkbox{
+    background-color: #0bae1e;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+
 

@@ -5,6 +5,7 @@ import RestaurantList from './pages/RestaurantList.vue';
 import SingleRestaurant from './pages/SingleRestaurant.vue';
 import CategoriesList from './pages/CategoriesList.vue';
 import FoodItemList from './pages/FoodItemList.vue';
+import OrderCheckout from './pages/OrderCheckout.vue';
 
 
 
@@ -35,6 +36,11 @@ const router = createRouter({
             path: '/fooditems',
             name: 'fooditems',
             component: FoodItemList
+        },
+        {
+            path: '/checkout',
+            name: 'checkout',
+            component: OrderCheckout
         },
 
     ]

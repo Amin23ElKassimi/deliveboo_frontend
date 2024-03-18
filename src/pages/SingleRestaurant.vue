@@ -27,7 +27,8 @@
                         </li>
                         </ul>
                         <p class="fw-bold">Totale: {{ calcolaTotale() }} €</p>
-                        <button class="btn btn-primary" @click="svuotaCarrello()">Invio</button>
+                        <!-- <button class="btn btn-primary" @click="svuotaCarrello()">Vai al checkout</button> -->
+                        <button class="btn btn-primary" @click="vaiAlCheckout()">Vai al checkout</button>
                     </div>
                 </div>
             </div>
@@ -46,17 +47,18 @@
 
 <script>
 import SingleMenu from '@/components/SingleMenu.vue';
-
+import { store } from '@/store';
 import axios from 'axios';
 
 export default {
     name: 'PostList',
     data() {
         return {
+            store,
             restaurants: [],
             restaurant: {},
             id: '',
-            carrello: JSON.parse(localStorage.getItem('carrello')) || [] // Carica il carrello dall'localStorage
+            carrello: JSON.parse(localStorage.getItem('carrello')) || [], // Carica il carrello dall'localStorage
         }
     },
     methods: {
@@ -92,6 +94,7 @@ export default {
             this.carrello = carrelloAggiornato;
             console.log(this.carrello)
             localStorage.setItem('carrello', JSON.stringify(this.carrello));
+            this.totale = this.calcolaTotale();
         },
         svuotaCarrello() {
             this.carrello = [];
@@ -99,12 +102,17 @@ export default {
             console.log(localStorage)
         },
         calcolaTotale() {
+            
             return this.carrello.reduce((totale, articolo) => totale + parseFloat(articolo.price), 0).toFixed(2);
         },
         rimuoviDalCarrello(index) {
             this.carrello.splice(index, 1); // Rimuove l'articolo dal carrello
             localStorage.setItem('carrello', JSON.stringify(this.carrello)); // Aggiorna il carrello nell'localStorage
-        }
+        },
+        vaiAlCheckout() {
+            this.store.totale = this.calcolaTotale();
+            this.$router.push('/checkout');
+        },
     },
     components: {
         SingleMenu,

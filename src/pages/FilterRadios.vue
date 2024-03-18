@@ -23,12 +23,11 @@ export default {
   },
   methods: {
     applyFilters() {
+      // Se non è selezionata nessuna categoria, emetti un array vuoto
       if (this.selectedCategories.length === 0) {
-        // Se non è selezionata nessuna categoria, invia tutte le categorie
-        const allCategories = this.categories.map(category => category.name);
-        this.$emit('filter', allCategories);
+        this.$emit('filter', []);
       } else {
-        // Altrimenti, invia solo le categorie selezionate
+        // Altrimenti, emetti solo le categorie selezionate
         this.$emit('filter', this.selectedCategories);
       }
     }

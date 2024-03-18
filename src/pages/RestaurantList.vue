@@ -4,8 +4,6 @@
       <section class="container">
         <!-- Componente FilterRadios per i filtri -->
         <FilterRadios :categories="categories" @filter="handleFilter" />
-  
-
       </section>
   
       <!-- Lista di SingleCard da stampare -->

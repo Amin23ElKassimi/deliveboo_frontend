@@ -25,7 +25,7 @@
             </div>
         </nav>
 
-        <jumbo class="row d-felx justify-content-center">
+        <jumbo class="row d-felx justify-content-center mb-5">
             <div class="jumbotron col-12 jumbotron-fluid">
                 <img class="card-img" src="/Logo_Deliveboo.jpg" alt="Card image">
             </div>

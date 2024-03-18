@@ -1,23 +1,36 @@
 <template lang="">
     <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
-            <div class="container">
-                <a class="navbar-brand">DeliveBoo</a>
+        <nav class="navbar navbar-expand-lg navbar-graphic row" data-bs-theme="dark">
+            <div class="container col-10 justify-content-space-between">
+                <div class="d-flex "> 
+                    <img class="card-img-logo" src="/Logo_Deliveboo.jpg" alt="Card image">
+                    <a class="navbar-brand">DeliveBoo</a>
+                </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <div class=" w-60" id="navbarNavDropdown">
                     <ul class="navbar-nav">
-                        <li class="nav-item" v-for="(link, index) in linkItems" :key="index">
+                        <li class="nav-item me-2" v-for="(link, index) in linkItems" :key="index">
                             <router-link :to="{ name: link.routeName }" class="nav-link">
                                 {{ link.label }}
                             </router-link>
+                        </li>
+                        <li class="pt-2 ms-2 color-gray">
+                            <a class="text-decoration-none" href="http://127.0.0.1:8000/login" >Area Ristoratore</a>
                         </li>
                     </ul>
                 </div>
                 
             </div>
         </nav>
+
+        <jumbo class="row d-felx justify-content-center">
+            <div class="jumbotron col-12 jumbotron-fluid">
+                <img class="card-img" src="/Logo_Deliveboo.jpg" alt="Card image">
+            </div>
+        </jumbo>
+        
     </header>
 </template>
 
@@ -34,11 +47,11 @@ export default {
                 //     routeName: 'home'
                 // },
                 {
-                    label: 'Restaurants',
+                    label: 'Ristoranti',
                     routeName: 'restaurants'
                 },
                 {
-                    label: 'fooditems',
+                    label: 'Piatti',
                     routeName: 'fooditems'
                 }
             ]
@@ -47,6 +60,6 @@ export default {
 }
 </script>
 
-<style lang="">
+<style lang="scss" scoped>
 
 </style>

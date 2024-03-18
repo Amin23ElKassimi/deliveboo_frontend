@@ -5,3 +5,26 @@
 body{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
+
+header{
+    .navbar-graphic{
+        background-color: #40A3CA;
+    }
+
+    a{
+        color: rgba(208, 208, 208, 0.867);
+    }
+
+    .card-img{
+        height: 600px;
+    }
+
+    .card-img-logo{
+        width: 37px;
+        height: 37px;
+        border-radius: 25%;
+        margin-right: 10px;
+    }
+}
+

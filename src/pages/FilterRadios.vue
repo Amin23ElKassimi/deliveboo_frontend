@@ -1,11 +1,13 @@
 <template>
-  <div class="row d-flex justify-content-center">
-    <div class="col-10 text-center mb-3 container-category">
-      <h3>Filtra i Ristoranti per categoria e seleziona il ristorante che preferisci!</h3>
+  <div class="row d-flex justify-content-center mb-5">
+    <div class="col-12 text-center mb-3 container-category shadow">
+      <h2 class="text-white mb-5">Filtra i Ristoranti per categoria e seleziona il ristorante che preferisci!</h2>
       <div v-for="category in categories" :key="category.id" class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" :id="'inlineCheckbox' + category.id" :value="category.name"
-          v-model="selectedCategories" @change="applyFilters">
-        <label class="form-check-label" :for="'inlineCheckbox' + category.id">{{ category.name }}</label>
+        <div class="category-checkbox">
+          <input class="form-check-input" type="checkbox" :id="'inlineCheckbox' + category.id" :value="category.name"
+            v-model="selectedCategories" @change="applyFilters">
+          <label class="form-check-label text-uppercase fw-bold shadow-sm" :for="'inlineCheckbox' + category.id">{{ category.name }}</label>
+        </div>
       </div>
     </div>
   </div>

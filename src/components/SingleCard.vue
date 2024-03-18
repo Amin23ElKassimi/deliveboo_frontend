@@ -125,11 +125,6 @@
 </script>
 
 <style lang="scss" scoped>
-    img {
-        height: 400px;
-        object-fit: cover;
-        margin-bottom: 3rem;
-    }
 
     img.image-preview {
         height: 200px;
@@ -138,5 +133,11 @@
     #cards {
         width: 18rem;
         margin: 1rem;
+    }
+
+    .card-img-top{
+        width: 100%;
+        height: 250px;
+        margin-bottom: 1rem;
     }
 </style>

@@ -91,6 +91,7 @@ export default {
                 this.braintreeInstance = instance;
             });
         },
+        // this.store.currentRestaurant = null;
     },
 
     mounted() {

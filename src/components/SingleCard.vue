@@ -9,8 +9,6 @@
                 <span v-for="(categor, index) in category" :key="index">
                     <span class="card-subtitle me-2 text-muted">{{ categor.name }}</span>
                 </span>
-                    <h6 class="card-subtitle mb-2 text-muted pt-3">{{ address }}</h6>
-                    <p class="card-text">{{ phone_number }}</p>
             </div>
             <div class="h-100 d-flex mb-3 align-items-center" v-if="linkRoute">
                     <router-link :to="linkRoute" class="btn btn-secondary rounded-pill me-5 fw-bold fs-5 shadow-lg">

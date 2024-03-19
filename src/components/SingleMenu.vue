@@ -1,6 +1,6 @@
 <template lang="">
     <!-- Info ristorante -->
-    <div id="restaurant-info" class="restaurant-info">
+    <div class="restaurant-info">
         <img class="restaurant-img" :src="image_url" alt="Restaurant image">
         <div class="restaurant-details">
             <h5 class="restaurant-name">{{ name }}</h5>

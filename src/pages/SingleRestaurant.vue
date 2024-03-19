@@ -2,7 +2,7 @@
     <!-- Filtri -->
     <div>
         <div class="d-flex justify-content-end">
-                <button class="btn btn-primary me-5 mt-4 position-fixed" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+                <button class="z-1 btn btn-primary me-5 mt-4 position-fixed" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
                     <i class="fa-solid fa-basket-shopping"></i>
                     <span v-if="carrello.length > 0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     {{ carrello.length }}
@@ -11,14 +11,15 @@
                 </button>
 
                 <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Acquista</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Acquista</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
                     <div class="offcanvas-body">
                         <ul  class="list-group">
                         <li v-for="articolo in carrello" class="list-group-item">
                         <div class="d-flex justify-content-between">
+
                             <p>{{ articolo.name }}</p>
                             <p>{{ articolo.price }} €</p>
                             <button class="btn btn-danger btn-sm" @click="rimuoviDalCarrello(index)">Rimuovi</button>
@@ -26,7 +27,8 @@
                         </li>
                         </ul>
                         <p class="fw-bold">Totale: {{ calcolaTotale() }} €</p>
-                        <button class="btn btn-primary" @click="svuotaCarrello()">Invio</button>
+                        <!-- <button class="btn btn-primary" @click="svuotaCarrello()">Vai al checkout</button> -->
+                        <button class="btn btn-primary" @click="vaiAlCheckout()">Vai al checkout</button>
                     </div>
                 </div>
             </div>
@@ -45,17 +47,18 @@
 
 <script>
 import SingleMenu from '@/components/SingleMenu.vue';
-
+import { store } from '@/store';
 import axios from 'axios';
 
 export default {
     name: 'PostList',
     data() {
         return {
+            store,
             restaurants: [],
             restaurant: {},
             id: '',
-            carrello: JSON.parse(localStorage.getItem('carrello')) || [] // Carica il carrello dall'localStorage
+            carrello: JSON.parse(localStorage.getItem('carrello')) || [], // Carica il carrello dall'localStorage
         }
     },
     methods: {
@@ -91,6 +94,7 @@ export default {
             this.carrello = carrelloAggiornato;
             console.log(this.carrello)
             localStorage.setItem('carrello', JSON.stringify(this.carrello));
+            this.totale = this.calcolaTotale();
         },
         svuotaCarrello() {
             this.carrello = [];
@@ -98,12 +102,17 @@ export default {
             console.log(localStorage)
         },
         calcolaTotale() {
+            
             return this.carrello.reduce((totale, articolo) => totale + parseFloat(articolo.price), 0).toFixed(2);
         },
         rimuoviDalCarrello(index) {
             this.carrello.splice(index, 1); // Rimuove l'articolo dal carrello
             localStorage.setItem('carrello', JSON.stringify(this.carrello)); // Aggiorna il carrello nell'localStorage
-        }
+        },
+        vaiAlCheckout() {
+            this.store.totale = this.calcolaTotale();
+            this.$router.push('/checkout');
+        },
     },
     components: {
         SingleMenu,

@@ -52,6 +52,7 @@ export default {
             console.log('PAGAAAHHHHHH')
             this.svuotaCarrello();
             this.$router.push('/restaurants');
+            this.store.currentRestaurant = null;
         }
     },
 

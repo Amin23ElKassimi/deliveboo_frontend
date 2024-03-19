@@ -37,7 +37,7 @@
     <main class="container">
         <section class="row justify-content-center">
             <SingleMenu class="p-0 col-12 mx-4 my-5" @carrelloAggiornato="aggiornaCarrelloPadre"
-            :name="restaurant.name" :vat="restaurant.vat"
+            :name="restaurant.name" :id="restaurant.id" :vat="restaurant.vat"
             :menu="restaurant.food_item"
             :address="restaurant.address"  :email="restaurant.email"
             :image_url="restaurant.image_url" :phone_number="restaurant.phone_number"/>

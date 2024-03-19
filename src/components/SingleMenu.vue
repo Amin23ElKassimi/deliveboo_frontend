@@ -22,10 +22,10 @@
     <div class="card col-md-4 mb-4 mx-2" v-for="fooditem in menu" :key="fooditem.id">
         <img :src="fooditem.image_url" class="card-img-top" alt="...">
         <div class="card-body px-3">
-            <h5 class="card-title">{{ fooditem.name }}</h5>
+            <h5 class="card-title">{{ fooditem.id }}</h5>
             <p class="card-text">{{ fooditem.description }}</p>
             <p class="card-text">{{ fooditem.price }} €</p>
-            <button class="btn btn-success" @click="aggiungiAlCarrelloEMandaEvento(fooditem)">Aggiungi al
+            <button class="btn btn-success" @click="aggiungiAlCarrelloEMandaEvento(fooditem, id)">Aggiungi al
                 carrello</button>
         </div>
     </div>
@@ -35,14 +35,20 @@
 
 </template>
 <script>
+import { store } from '@/store';
 export default {
     data() {
         return {
+            store,
             carrello: JSON.parse(localStorage.getItem('carrello')) || [] // Carica il carrello dall'localStorage
         }
     },
     props: {
         name: {
+            required: true,
+            type: String,
+        },
+        id: {
             required: true,
             type: String,
         },
@@ -108,13 +114,25 @@ export default {
                 this.carrello = JSON.parse(carrello);
             }
         },
-        aggiungiAlCarrelloEMandaEvento(pietanza) {
-            const carrelloLocalStorage = JSON.parse(localStorage.getItem('carrello'));
+        aggiungiAlCarrelloEMandaEvento(pietanza, id) {
+            console.log(id)
+            if(this.store.currentRestaurant == null){
+                this.store.currentRestaurant = id
+            }
+
+            if(id != this.store.currentRestaurant){
+                alert("Impossibile aggiungere fooditems da un altro ristorante!");
+                return;
+            }
+            
+                const carrelloLocalStorage = JSON.parse(localStorage.getItem('carrello'));
                 this.carrello = carrelloLocalStorage || [];
                 this.carrello.push(pietanza);
                 localStorage.setItem('carrello', JSON.stringify(this.carrello));
                 this.$emit('carrelloAggiornato', this.carrello);
         },
+
+
     },
     mounted() {
         console.log('inserito titolo'),

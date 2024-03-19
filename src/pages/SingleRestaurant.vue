@@ -22,7 +22,7 @@
 
                             <p>{{ articolo.name }}</p>
                             <p>{{ articolo.price }} €</p>
-                            <button class="btn btn-danger btn-sm" @click="rimuoviDalCarrello(index)">Rimuovi</button>
+                            <button class="btn btn-danger btn-sm" @click="rimuoviDalCarrello(index, id)">Rimuovi</button>
                         </div>
                         </li>
                         </ul>
@@ -99,15 +99,18 @@ export default {
         svuotaCarrello() {
             this.carrello = [];
             localStorage.removeItem('carrello');
-            console.log(localStorage)
         },
         calcolaTotale() {
             
             return this.carrello.reduce((totale, articolo) => totale + parseFloat(articolo.price), 0).toFixed(2);
         },
-        rimuoviDalCarrello(index) {
+        rimuoviDalCarrello(index, id) {
             this.carrello.splice(index, 1); // Rimuove l'articolo dal carrello
             localStorage.setItem('carrello', JSON.stringify(this.carrello)); // Aggiorna il carrello nell'localStorage
+            if(this.carrello.length == 0){
+                this.store.currentRestaurant = null
+                console.log(`carrello settato a null : ${this.carrello}`)
+            }
         },
         vaiAlCheckout() {
             this.store.totale = this.calcolaTotale();

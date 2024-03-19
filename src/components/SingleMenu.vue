@@ -1,4 +1,8 @@
 <template lang="">
+    <div class="alert alert-danger d-flex justify-content-between" role="alert" v-if="showAlert && !alertClosed">
+            <p>Il tuo carrello contine elementi di un altro risorante! Concludi l'ordine o elimina gli elementi all'interno per continuare </p>
+            <button type="button" class="btn-close" aria-label="Close" @click="closeAlert"></button>
+        </div>
     <!-- Info ristorante -->
     <div class="restaurant-info">
         <img class="restaurant-img" :src="image_url" alt="Restaurant image">
@@ -22,7 +26,7 @@
     <div class="card col-md-4 mb-4 mx-2" v-for="fooditem in menu" :key="fooditem.id">
         <img :src="fooditem.image_url" class="card-img-top" alt="...">
         <div class="card-body px-3">
-            <h5 class="card-title">{{ fooditem.id }}</h5>
+            <h5 class="card-title">{{ fooditem.name }}</h5>
             <p class="card-text">{{ fooditem.description }}</p>
             <p class="card-text">{{ fooditem.price }} €</p>
             <button class="btn btn-success" @click="aggiungiAlCarrelloEMandaEvento(fooditem, id)">Aggiungi al
@@ -40,7 +44,9 @@ export default {
     data() {
         return {
             store,
-            carrello: JSON.parse(localStorage.getItem('carrello')) || [] // Carica il carrello dall'localStorage
+            carrello: JSON.parse(localStorage.getItem('carrello')) || [], // Carica il carrello dall'localStorage
+            showAlert: false, // Inizialmente nascondi l'alert
+            alertClosed: false // Inizialmente l'alert non è stato chiuso
         }
     },
     props: {
@@ -115,13 +121,16 @@ export default {
             }
         },
         aggiungiAlCarrelloEMandaEvento(pietanza, id) {
-            console.log(id)
+            console.log(`lunghezza carrello: ${this.carrello.length}`)
             if(this.store.currentRestaurant == null){
                 this.store.currentRestaurant = id
             }
 
             if(id != this.store.currentRestaurant){
-                alert("Impossibile aggiungere fooditems da un altro ristorante!");
+                if (!this.showAlert || this.alertClosed) {
+                    this.showAlert = true;
+                    this.alertClosed = false;
+                }
                 return;
             }
             
@@ -131,7 +140,9 @@ export default {
                 localStorage.setItem('carrello', JSON.stringify(this.carrello));
                 this.$emit('carrelloAggiornato', this.carrello);
         },
-
+        closeAlert() {
+            this.alertClosed = true;
+        },
 
     },
     mounted() {
@@ -142,7 +153,7 @@ export default {
     },
     updated() {
         console.log(`carrello in updated ${this.carrello}`);
-        this.caricaCarrello(); // Carica il carrello anche quando il componente viene aggiornato
+        this.caricaCarrello();
     }
 }
 </script>

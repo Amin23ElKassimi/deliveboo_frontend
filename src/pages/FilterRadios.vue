@@ -3,8 +3,8 @@
     <div class="col-12 text-center mb-3 container-category shadow">
       <h2 class="text-white mb-5">Filtra i Ristoranti per categoria e seleziona il ristorante che preferisci!</h2>
       <div v-for="category in categories" :key="category.id" class="form-check form-check-inline">
-        <div class="category-checkbox">
-          <input class="form-check-input d-none" type="checkbox" :id="'inlineCheckbox' + category.id" :value="category.name"
+        <div class="category-checkbox" role="group" aria-label="Basic checkbox toggle button group"> 
+          <input class="form-check-input d-none btn-check" type="checkbox" :id="'inlineCheckbox' + category.id" :value="category.name"
             v-model="selectedCategories" @change="applyFilters">
           <label class="form-check-label text-uppercase fw-bold shadow-sm btn btn-light rounded-pill border-0 shadow-lg" :for="'inlineCheckbox' + category.id">{{ category.name }}</label>
         </div>

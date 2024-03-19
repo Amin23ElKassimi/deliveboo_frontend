@@ -129,22 +129,17 @@
 </script>
 
 <style lang="scss" scoped>
-<<<<<<< HEAD
     img {
         width: 400px;
         height: 400px;
         object-fit: cover;
         object-position: center;
     }
-=======
->>>>>>> 99fbd404d079e1244c7c83bbc7a0659e4756775b
 
     img.image-preview {
         height: 200px;
     }
 
-<<<<<<< HEAD
-=======
     #cards {
         width: 18rem;
         margin: 1rem;
@@ -155,5 +150,4 @@
         height: 250px;
         margin-bottom: 1rem;
     }
->>>>>>> 99fbd404d079e1244c7c83bbc7a0659e4756775b
 </style>

@@ -18,6 +18,8 @@
 
     <!-- Lista Film da stampare come Cards -->
     <div class="mb-3" v-for="fooditem in menu">
+        <h1>AAAA</h1>
+
         <img :src="fooditem.image_url" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">{{ fooditem.name }}</h5>
@@ -43,7 +45,7 @@
             },
             vat: {
                 required: true,
-                type: String,
+                type: Number,
             },
             address: {
                 required: true,
@@ -63,7 +65,7 @@
             },
             vat: {
                 required: true,
-                type: String,
+                type: Number,
             },
             menu: {
                 required: true,

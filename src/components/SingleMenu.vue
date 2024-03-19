@@ -48,7 +48,7 @@ export default {
         },
         vat: {
             required: true,
-            type: String,
+            type: Number,
         },
         address: {
             required: true,

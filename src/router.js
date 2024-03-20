@@ -6,6 +6,7 @@ import SingleRestaurant from './pages/SingleRestaurant.vue';
 import CategoriesList from './pages/CategoriesList.vue';
 import FoodItemList from './pages/FoodItemList.vue';
 import OrderCheckout from './pages/OrderCheckout.vue';
+// import Payment from './pages/Payment.vue';
 
 
 
@@ -42,6 +43,11 @@ const router = createRouter({
             name: 'checkout',
             component: OrderCheckout
         },
+        // {
+        //     path: '/Payment',
+        //     name: 'payment',
+        //     component: Payment
+        // },
 
     ]
 });

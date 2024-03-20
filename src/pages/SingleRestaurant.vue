@@ -22,7 +22,7 @@
 
                             <p>{{ articolo.name }}</p>
                             <p>{{ articolo.price }} €</p>
-                            <button class="btn btn-danger btn-sm" @click="rimuoviDalCarrello(index)">Rimuovi</button>
+                            <button class="btn btn-danger btn-sm" @click="rimuoviDalCarrello(index, id)">Rimuovi</button>
                         </div>
                         </li>
                         </ul>
@@ -37,7 +37,7 @@
     <main class="container">
         <section class="row justify-content-center">
             <SingleMenu class="p-0 col-12 mx-4 my-5" @carrelloAggiornato="aggiornaCarrelloPadre"
-            :name="restaurant.name" :vat="restaurant.vat"
+            :name="restaurant.name" :id="restaurant.id" :vat="restaurant.vat"
             :menu="restaurant.food_item"
             :address="restaurant.address"  :email="restaurant.email"
             :image_url="restaurant.image_url" :phone_number="restaurant.phone_number"/>
@@ -99,15 +99,18 @@ export default {
         svuotaCarrello() {
             this.carrello = [];
             localStorage.removeItem('carrello');
-            console.log(localStorage)
         },
         calcolaTotale() {
             
             return this.carrello.reduce((totale, articolo) => totale + parseFloat(articolo.price), 0).toFixed(2);
         },
-        rimuoviDalCarrello(index) {
+        rimuoviDalCarrello(index, id) {
             this.carrello.splice(index, 1); // Rimuove l'articolo dal carrello
             localStorage.setItem('carrello', JSON.stringify(this.carrello)); // Aggiorna il carrello nell'localStorage
+            if(this.carrello.length == 0){
+                this.store.currentRestaurant = null
+                console.log(`carrello settato a null : ${this.carrello}`)
+            }
         },
         vaiAlCheckout() {
             this.store.totale = this.calcolaTotale();

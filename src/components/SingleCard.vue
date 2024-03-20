@@ -179,7 +179,7 @@ img.image-preview {
     box-shadow: 0px 3px 5px lightblue;
 }
 
-.container-text-card{
+.container-text-card {
     display: flex;
     height: 280px;
     flex-direction: column;

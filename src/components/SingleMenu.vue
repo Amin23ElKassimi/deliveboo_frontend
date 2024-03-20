@@ -27,18 +27,18 @@
     </div>
 
 <!-- Lista Piatto da stampare come Cards -->
-<div class="mb-3 d-flex flex-wrap">
-    <div class="card col-md-4 mb-4 mx-2" v-for="fooditem in menu" :key="fooditem.id">
-        <img :src="fooditem.image_url" class="card-img-top" alt="...">
-        <div class="card-body px-3">
-            <h5 class="card-title">{{ fooditem.name }}</h5>
-            <p class="card-text">{{ fooditem.description }}</p>
-            <p class="card-text">{{ fooditem.price }} €</p>
-            <button class="btn btn-success" @click="aggiungiAlCarrelloEMandaEvento(fooditem, id)">Aggiungi al
-                carrello</button>
-        </div>
+<div class="card col-md-4 mb-4 mx-2" v-for="fooditem in menu" :key="fooditem.id">
+    <!-- Utilizza la funzione getImageUrl per gestire l'URL dell'immagine del cibo -->
+    <img :src="getImageUrl(fooditem.image_url)" class="card-img-top" alt="...">
+    <div class="card-body px-3">
+        <h5 class="card-title">{{ fooditem.name }}</h5>
+        <p class="card-text">{{ fooditem.description }}</p>
+        <p class="card-text">{{ fooditem.price }} €</p>
+        <button class="btn btn-success" @click="aggiungiAlCarrelloEMandaEvento(fooditem, id)">Aggiungi al
+            carrello</button>
     </div>
 </div>
+
 
 
 

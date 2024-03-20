@@ -1,6 +1,6 @@
 <template lang="">
-    <div class="container">
-        <jumbo class="row d-flex justify-content-center align-items-center mb-5">
+    <div class="container pt-5">
+      <jumbo class="row d-flex justify-content-center align-items-center mb-5">
         <div class="col-5 text-center">
           <h4 class="text-jumbo text-white lh-base">
             DeliveBoo offre una vasta selezione di ristoranti! <br/>
@@ -23,5 +23,4 @@ export default {
 }
 </script>
 <style lang="">
-
 </style>

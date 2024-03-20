@@ -140,6 +140,10 @@ export default {
         .text-none{
           display: none;
         }
+
+        .jumbo-img{
+          display: none;
+        }
     }
 
 </style>

@@ -1,14 +1,11 @@
-<template lang="">
+<template>
     <header class="mb-4 shadow-lg">
         <nav class="navbar navbar-graphic navbar-expand-lg " data-bs-theme="dark">
-            <div class="container">
+            <div class="container d-flex justify-content-between">
                 <div class="d-flex align-items-center">
                     <img class="logo-img rounded-circle" src="/Logo_Deliveboo.jpg" alt="immagine logo">
                     <a class="ms-2 navbar-brand">DeliveBoo</a>
                 </div>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
                 <div class= "w-60" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                         <li class="nav-item me-2" v-for="(link, index) in linkItems" :key="index">
@@ -65,5 +62,13 @@ export default {
     .logo-img{
         width: 30px;
         height: 30px;
+
+    }
+
+    @media only screen and (max-width: 991.2px) {
+        
+        .nav-link{
+          display: flex;
+        }
     }
 </style>

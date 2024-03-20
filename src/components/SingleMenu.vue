@@ -4,10 +4,13 @@
             <button type="button" class="btn-close" aria-label="Close" @click="closeAlert"></button>
         </div>
     <!-- Info ristorante -->
-    <div class="restaurant-info">
-        <img class="restaurant-img" :src="image_url" alt="Restaurant image">
+    <div class="restaurant-info pt-5">
+        <div class="pb-2">
+            <img class="restaurant-img rounded-circle shadow" :src="image_url" alt="Restaurant image">
+        </div>
+        
         <div class="restaurant-details">
-            <h5 class="restaurant-name">{{ name }}</h5>
+            <h5 class="restaurant-name pt-5">{{ name }}</h5>
             <div v-for="(category, index) in categories" :key="index">
                 <span class="badge bg-primary">{{ category.name }}</span>
             </div>

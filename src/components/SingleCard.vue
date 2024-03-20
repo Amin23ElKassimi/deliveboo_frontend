@@ -3,7 +3,7 @@
         <img id="card-img-top" :src="image_url" alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title">{{ name }}</h5>
-            <div v-for="(categor, index) in category" :key="index">
+            <div v-for="(category, index) in category" :key="index">
                 <h6 class="card-subtitle mb-2 text-muted">{{ category.name }}</h6>
             </div>
             <h6 class="card-subtitle mb-2 text-muted">{{ address }}</h6>
@@ -131,7 +131,7 @@
     }
 
     #cards {
-        width: 18rem;
+        width: 15rem;
         margin: 1rem;
         padding: 0;
         border-radius: 10px;
@@ -152,10 +152,12 @@
         box-shadow: 0px 3px 5px lightblue;
     }
 
-    @media only screen and (min-width: 600px) {
+    @media only screen and (max-width: 600px) {
         #cards {
             width: 13rem;
-            height: 500px;
+            height: 600px;
         }
+
+
     }
 </style>

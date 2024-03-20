@@ -2,7 +2,7 @@
     <main class="container-fluid">
       
       <jumbo class="row d-flex justify-content-center align-items-center mb-5">
-        <div class="col-5 text-center">
+        <div class="text-none col-5 text-center">
           <h4 class="text-jumbo text-white lh-base">
             DeliveBoo offre una vasta selezione di ristoranti! <br/>
             Scegli la pietanza che desideri!<br/>
@@ -129,4 +129,17 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+        .text-none{
+          display: none;
+        }
+
+@media only screen and (max-width: 600px) {
+        
+        .text-none{
+          display: none;
+        }
+    }
+
+</style>

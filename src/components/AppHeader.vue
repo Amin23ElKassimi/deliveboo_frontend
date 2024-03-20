@@ -2,7 +2,10 @@
     <header class="mb-4 shadow-lg">
         <nav class="navbar navbar-graphic navbar-expand-lg " data-bs-theme="dark">
             <div class="container">
-                <a class="navbar-brand">DeliveBoo</a>
+                <div class="d-flex align-items-center">
+                    <img class="logo-img rounded-circle" src="/Logo_Deliveboo.jpg" alt="immagine logo">
+                    <a class="ms-2 navbar-brand">DeliveBoo</a>
+                </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -13,9 +16,7 @@
                                 {{ link.label }}
                             </router-link>
                         </li>
-                        <li class="pt-2 ms-2 color-gray">
-                            <a class="text-decoration-none" href="http://127.0.0.1:8000/login" >Area Ristoratore</a>
-                        </li>
+                        <a class="nav-link text-decoration-none" href="http://127.0.0.1:8000/login" >Area Ristoratore</a>
                     </ul>
                 </div>
             </div>
@@ -34,10 +35,10 @@ export default {
     data() {
         return {
             linkItems: [
-                // {
-                //     label: 'Home',
-                //     routeName: 'home'
-                // },
+                {
+                    label: 'Home',
+                    routeName: 'home'
+                },
                 {
                     label: 'Ristoranti',
                     routeName: 'restaurants'
@@ -53,5 +54,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    .nav-link{
+        color: white;
+    }
 
+    .nav-link:hover{
+        color: rgb(91, 145, 245);
+    }
+
+    .logo-img{
+        width: 30px;
+        height: 30px;
+    }
 </style>

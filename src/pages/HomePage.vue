@@ -11,7 +11,7 @@
             diventando una soluzione ideale per soddisfare ogni pasto! 
           </h4>
         </div>
-        <div class="jumbotron col-3 jumbotron-fluid">
+        <div class="jumbotron col-4 jumbotron-fluid">
             <img class="card-img jumbo-img rounded-circle z-0" src="/Logo_Deliveboo.jpg" alt="Jumbo immagine">
         </div>
       </jumbo>

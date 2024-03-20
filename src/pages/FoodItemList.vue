@@ -1,5 +1,5 @@
 <template lang="">
-    <main class="container-fluid">
+    <main class="container-fluid bg-color">
         <!-- Lista piatti da stampare come Cards -->
         <div class="lista row justify-content-center"> 
             <div class="card cards col-6 col-md-4 col-lg-3" v-for="fooditem in fooditems" :key="fooditem.id">
@@ -48,6 +48,10 @@ img {
     width: 100%;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+}
+
+.bg-color{
+    background-color: #40A3CA;
 }
 
 main {

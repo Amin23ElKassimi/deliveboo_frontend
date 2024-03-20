@@ -1,14 +1,17 @@
 <template>
-    <footer class="footer">
+    <footer class="footer mt-5">
       <div class="container">
-        <div class="row ">
-          <div class="col-md-4">
-            <h5 class="mb-4">Informazioni</h5>
+        <div class="row d-flex justify-content-between">
+          <div class="col-md-4 text-center">
+            <h5 class="mb-4 text-uppercase">Informazioni</h5>
             <p>Email: info@deliveboo.com</p>
             <p>Telefono: +1234567890</p>
           </div>
-          <div class="col-md-4">
-            <h5 class="mb-4">Esplora</h5>
+          <div class="col-3 text-center">
+            <img class="footer-img rounded-circle z-0" src="/Logo_Deliveboo.jpg" alt="Jumbo immagine">
+          </div>
+          <div class="col-md-4 text-center">
+            <h5 class="mb-4 text-uppercase">Esplora</h5>
             <ul>
               <li><router-link to="/">Home</router-link></li>
               <li><router-link to="/restaurants">Ristoranti</router-link></li>
@@ -18,8 +21,8 @@
           </div>
         </div>
       </div>
-      <div>
-        <p class="pt-5">© 2024 Deliveboo, Tutti i diritti riservati</p>
+      <div class="w-100 text-center">
+        <p class="pt-4"><small>© 2024 Deliveboo, Tutti i diritti riservati</small></p>
       </div>
     </footer>
   </template>
@@ -50,10 +53,18 @@
   
   .footer ul li {
     margin-bottom: 10px;
+    
   }
   
   .footer ul li a {
     color: white;
+    text-decoration: none;
+  }
+
+  .footer ul li a:hover {
+    color: rgb(91, 145, 245);
+    scale: 1.1;
+    transition: .2s;
   }
   
   .social-icons li {
@@ -64,5 +75,10 @@
   .social-icons li a {
     color: white;
     font-size: 20px;
+  }
+
+  .footer-img{
+    width: 200px;
+    height: 200px;
   }
   </style>

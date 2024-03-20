@@ -16,11 +16,6 @@
                 </div>
                 <h6 class="card-subtitle mb-2 text-dark text-muted">{{ address }}</h6>
                 <p class="card-text">Tel. {{ phone_number }}</p>
-                <div class="w-100 d-flex mb-3" v-if="linkRoute">
-                    <router-link :to="linkRoute" class="btn w-100 btn-primary">
-                        {{ linkLabel }}
-                    </router-link>
-                </div>
             </div>
         </div>
     </router-link>
@@ -157,7 +152,7 @@ img.image-preview {
 
 #cards {
     width: 14rem;
-    height: 550px;
+    height: 500px;
     margin: 1rem;
     padding: 0;
     border-radius: 10px;
@@ -181,7 +176,7 @@ img.image-preview {
 
 .container-text-card {
     display: flex;
-    height: 280px;
+    height: 210px;
     flex-direction: column;
     justify-content: space-between;
 }

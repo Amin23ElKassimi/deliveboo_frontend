@@ -1,5 +1,5 @@
 <template lang="">
-    <main class="container-fluid">
+    <main class="container-fluid mb-5 pt-4">
       
       <jumbo class="row d-flex justify-content-center align-items-center mb-5">
         <div class="text-none col-5 text-center">
@@ -11,9 +11,6 @@
             DeliveBoo si distingue per la sua convenienza, scelta e qualità,
             diventando una soluzione ideale per soddisfare ogni pasto! 
           </h4>
-        </div>
-        <div class="jumbotron col-3 jumbotron-fluid">
-            <img class="card-img jumbo-img rounded-circle z-0" src="/Logo_Deliveboo.jpg" alt="Jumbo immagine">
         </div>
       </jumbo>
       <!-- Sezione principale -->

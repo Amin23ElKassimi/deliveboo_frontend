@@ -1,6 +1,6 @@
 <template lang="">
     <div id="cards" class="card style">
-        <img class="card-img-top" :src="image_url" alt="Card image cap">
+        <img id="card-img-top" :src="image_url" alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title">{{ name }}</h5>
             <div v-for="(categor, index) in category" :key="index">
@@ -133,11 +133,29 @@
     #cards {
         width: 18rem;
         margin: 1rem;
+        padding: 0;
+        border-radius: 10px;
+        box-shadow: 1px 1px 5px 2px rgb(136, 177, 177);
     }
 
-    .card-img-top{
+    #cards:hover{
+        box-shadow: 5px 5px 5px 3px rgb(136, 177, 177);
+        scale: 1.1;
+        transition: .2s;
+    }
+
+    #card-img-top{
         width: 100%;
+        border-radius: 10px 10px 0 0;
         height: 250px;
         margin-bottom: 1rem;
+        box-shadow: 0px 3px 5px lightblue;
+    }
+
+    @media only screen and (min-width: 600px) {
+        #cards {
+            width: 13rem;
+            height: 500px;
+        }
     }
 </style>

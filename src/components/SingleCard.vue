@@ -4,7 +4,7 @@
         <div class="card-body">
             <h5 class="card-title">{{ name }}</h5>
             <div v-for="(categor, index) in category" :key="index">
-                <h6 class="card-subtitle mb-2 text-muted">{{ categor.name }}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">{{ category.name }}</h6>
             </div>
             <h6 class="card-subtitle mb-2 text-muted">{{ address }}</h6>
             <p class="card-text">{{ phone_number }}</p>

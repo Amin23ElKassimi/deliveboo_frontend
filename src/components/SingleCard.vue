@@ -1,7 +1,8 @@
 <template lang="">
     <div id="cards" class="card style">
-        <img id="card-img-top" :src="image_url" alt="Card image cap">
         <div class="card-body">
+             <!-- Verifica se l'URL è un link HTTP o un percorso locale -->
+            <img id="card-img-top" :src="getImageUrl(image_url)" alt="Card image cap">
             <h5 class="card-title">{{ name }}</h5>
             <div v-for="(category, index) in category" :key="index">
                 <h6 class="card-subtitle mb-2 text-muted">{{ category.name }}</h6>
@@ -30,134 +31,150 @@
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                carrello: JSON.parse(localStorage.getItem('carrello')) || [] // Carica il carrello dall'localStorage
+export default {
+    data() {
+        return {
+            carrello: JSON.parse(localStorage.getItem('carrello')) || [], // Carica il carrello dall'localStorage
+            isHttpLink(url) {
+                return url.split(':')[0] === 'http';
+            }
+        }
+    },
+    props: {
+        name: {
+            required: true,
+            type: String,
+        },
+        vat: {
+            required: true,
+            type: Number,
+        },
+        vat: {
+            required: true,
+            type: Number,
+        },
+        address: {
+            required: true,
+            type: String,
+        },
+        email: {
+            required: true,
+            type: String,
+        },
+        image_url: {
+            required: true,
+            type: String,
+        },
+        phone_number: {
+            required: true,
+            type: String,
+        },
+        vat: {
+            required: true,
+            type: Number,
+        },
+        menu: {
+            required: true,
+            type: String,
+        },
+        linkRoute: {
+            required: false,
+            type: [Object, String]
+        },
+        linkLabel: {
+            required: false,
+            type: String,
+        },
+        fullLength: {
+            required: false,
+            type: Boolean,
+        },
+        category: {
+            required: false,
+            type: Boolean,
+        },
+    },
+    methods: {
+        aggiungiAlCarrello(pietanza) {
+            this.carrello.push(pietanza);
+            this.salvaCarrello(); // Salva il carrello dopo aver aggiunto un articolo
+            /* this.caricaCarrello(); */ // Carica il carrello aggiornato
+        },
+        salvaCarrello() {
+            // Converti l'array del carrello in una stringa JSON e salvalo nel localStorage
+            localStorage.setItem('carrello', JSON.stringify(this.carrello));
+        },
+        caricaCarrello() {
+            // Carica il carrello dal localStorage e convertilo da stringa JSON a array di oggetti
+            const carrello = localStorage.getItem('carrello');
+            if (carrello) {
+                this.carrello = JSON.parse(carrello);
             }
         },
-        props: {
-            name: {
-                required: true,
-                type: String,
-            },
-            vat: {
-                required: true,
-                type: Number,
-            },
-            address: {
-                required: true,
-                type: String,
-            },
-            email: {
-                required: true,
-                type: String,
-            },
-            image_url: {
-                required: true,
-                type: String,
-            },
-            phone_number: {
-                required: true,
-                type: String,
-            },
-            vat: {
-                required: true,
-                type: Number,
-            },
-            menu: {
-                required: true,
-                type: String,
-            },
-            linkRoute: {
-                required: false,
-                type: [Object, String]
-            },
-            linkLabel: {
-                required: false,
-                type: String,
-            },
-            fullLength: {
-                required: false,
-                type: Boolean,
-            },
-            category: {
-                required: false,
-                type: Boolean,
-            },
+        aggiungiAlCarrelloEMandaEvento(pietanza) {
+            const carrelloLocalStorage = JSON.parse(localStorage.getItem('carrello'));
+            this.carrello = carrelloLocalStorage || [];
+            this.carrello.push(pietanza);
+            localStorage.setItem('carrello', JSON.stringify(this.carrello));
+            this.$emit('carrelloAggiornato', this.carrello);
         },
-        methods: {
-            aggiungiAlCarrello(pietanza) {
-                this.carrello.push(pietanza);
-                this.salvaCarrello(); // Salva il carrello dopo aver aggiunto un articolo
-                /* this.caricaCarrello(); */ // Carica il carrello aggiornato
-            },
-            salvaCarrello() {
-                // Converti l'array del carrello in una stringa JSON e salvalo nel localStorage
-                localStorage.setItem('carrello', JSON.stringify(this.carrello));
-            },
-            caricaCarrello() {
-                // Carica il carrello dal localStorage e convertilo da stringa JSON a array di oggetti
-                const carrello = localStorage.getItem('carrello');
-                if (carrello) {
-                    this.carrello = JSON.parse(carrello);
-                }
-            },
-            aggiungiAlCarrelloEMandaEvento(pietanza) {
-                const carrelloLocalStorage = JSON.parse(localStorage.getItem('carrello'));
-                this.carrello = carrelloLocalStorage || [];
-                this.carrello.push(pietanza);
-                localStorage.setItem('carrello', JSON.stringify(this.carrello));
-                this.$emit('carrelloAggiornato', this.carrello);
-            },
-        },
-        mounted() {
-            console.log('inserito titolo'),
-                console.log(`carrello in mounted ${this.carrello}`);
-            this.caricaCarrello();
-
-        },
-        updated() {
-            console.log(`carrello in updated ${this.carrello}`);
-            this.caricaCarrello(); // Carica il carrello anche quando il componente viene aggiornato
+        getImageUrl(url) {
+            // Verifica se l'URL è un link HTTP o un percorso locale
+            if (url && (url.startsWith('http://') || url.startsWith('https://'))) {
+                // Se è un link HTTP o HTTPS, usa direttamente l'URL fornito
+                return url;
+            } else {
+                // Altrimenti, costruisci l'URL completo per le immagini nei percorsi locali
+                return 'http://127.0.0.1:8000/storage/' + url;
+            }
         }
+    },
+    mounted() {
+        console.log('inserito titolo'),
+            console.log(`carrello in mounted ${this.carrello}`);
+        this.caricaCarrello();
+
+    },
+    updated() {
+        console.log(`carrello in updated ${this.carrello}`);
+        this.caricaCarrello(); // Carica il carrello anche quando il componente viene aggiornato
     }
+}
 </script>
 
 <style lang="scss" scoped>
+img.image-preview {
+    height: 200px;
+}
 
-    img.image-preview {
-        height: 200px;
-    }
+#cards {
+    width: 15rem;
+    margin: 1rem;
+    padding: 0;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px 2px rgb(136, 177, 177);
+}
 
+#cards:hover {
+    box-shadow: 5px 5px 5px 3px rgb(136, 177, 177);
+    scale: 1.1;
+    transition: .2s;
+}
+
+#card-img-top {
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+    height: 250px;
+    margin-bottom: 1rem;
+    box-shadow: 0px 3px 5px lightblue;
+}
+
+@media only screen and (max-width: 600px) {
     #cards {
-        width: 15rem;
-        margin: 1rem;
-        padding: 0;
-        border-radius: 10px;
-        box-shadow: 1px 1px 5px 2px rgb(136, 177, 177);
+        width: 13rem;
+        height: 600px;
     }
 
-    #cards:hover{
-        box-shadow: 5px 5px 5px 3px rgb(136, 177, 177);
-        scale: 1.1;
-        transition: .2s;
-    }
 
-    #card-img-top{
-        width: 100%;
-        border-radius: 10px 10px 0 0;
-        height: 250px;
-        margin-bottom: 1rem;
-        box-shadow: 0px 3px 5px lightblue;
-    }
-
-    @media only screen and (max-width: 600px) {
-        #cards {
-            width: 13rem;
-            height: 600px;
-        }
-
-
-    }
+}
 </style>

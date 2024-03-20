@@ -12,11 +12,11 @@ import OrderCheckout from './pages/OrderCheckout.vue';
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-        // {
-        //     path: '/',
-        //     name: 'home',
-        //     component: AppHome
-        // },
+        {
+            path: '/',
+            name: 'home',
+            component: AppHome
+        },
         {
             path: '/restaurants',
             name: 'restaurants',

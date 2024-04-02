@@ -19,6 +19,7 @@
                         <ul  class="list-group">
                         <li v-for="articolo in carrello" class="list-group-item">
                         <div class="d-flex justify-content-between">
+
                             <p>{{ articolo.name }}</p>
                             <p>{{ articolo.price }} €</p>
                             <button class="btn btn-danger btn-sm" @click="rimuoviDalCarrello(index, id)">Rimuovi</button>
@@ -40,15 +41,12 @@
             :menu="restaurant.food_item"
             :address="restaurant.address"  :email="restaurant.email"
             :image_url="restaurant.image_url" :phone_number="restaurant.phone_number"/>
-            <OrderCheckout :carrello="carrello" @carrelloAggiornato="aggiornaCarrelloPadre"/>
         </section>
-
     </main>
 </template>
 
 <script>
 import SingleMenu from '@/components/SingleMenu.vue';
-import OrderCheckout from './OrderCheckout.vue';
 import { store } from '@/store';
 import axios from 'axios';
 
@@ -121,7 +119,6 @@ export default {
     },
     components: {
         SingleMenu,
-        OrderCheckout,
     },
 
     props: {

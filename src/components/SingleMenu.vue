@@ -128,57 +128,49 @@ export default {
         aggiungiAlCarrelloEMandaEvento(pietanza, id) {
             console.log(`lunghezza carrello: ${this.carrello.length}`)
             if (this.store.currentRestaurant == null) {
-                if (this.store.currentRestaurant == null) {
-                    this.store.currentRestaurant = id
+                this.store.currentRestaurant = id
+            }
+
+            if (id != this.store.currentRestaurant) {
+                if (!this.showAlert || this.alertClosed) {
+                    this.showAlert = true;
+                    this.alertClosed = false;
                 }
+                return;
+            }
 
-                if (id != this.store.currentRestaurant) {
-                    if (id != this.store.currentRestaurant) {
-                        if (!this.showAlert || this.alertClosed) {
-                            this.showAlert = true;
-                            this.alertClosed = false;
-                        }
-                        return;
-                    }
-
-                    const carrelloLocalStorage = JSON.parse(localStorage.getItem('carrello'));
-                    this.carrello = carrelloLocalStorage || [];
-                    this.carrello.push(pietanza);
-                    localStorage.setItem('carrello', JSON.stringify(this.carrello));
-                    this.$emit('carrelloAggiornato', this.carrello);
-
-                    const carrelloLocalStorage = JSON.parse(localStorage.getItem('carrello'));
-                    this.carrello = carrelloLocalStorage || [];
-                    this.carrello.push(pietanza);
-                    localStorage.setItem('carrello', JSON.stringify(this.carrello));
-                    this.$emit('carrelloAggiornato', this.carrello);
-                },
-                closeAlert() {
-                    this.alertClosed = true;
-                },
-                getImageUrl(url) {
-                    // Verifica se l'URL è un link HTTP o un percorso locale
-                    if (url && (url.startsWith('http://') || url.startsWith('https://'))) {
-                        // Se è un link HTTP o HTTPS, usa direttamente l'URL fornito
-                        return url;
-                    } else {
-                        // Altrimenti, costruisci l'URL completo per le immagini nei percorsi locali
-                        return 'http://127.0.0.1:8000/storage/' + url;
-                    }
-                }
-
-            },
-            mounted() {
-                console.log('inserito titolo'),
-                    console.log(`carrello in mounted ${this.carrello}`);
-                this.caricaCarrello();
-
-            },
-            updated() {
-                console.log(`carrello in updated ${this.carrello}`);
-                this.caricaCarrello();
+            const carrelloLocalStorage = JSON.parse(localStorage.getItem('carrello'));
+            this.carrello = carrelloLocalStorage || [];
+            this.carrello.push(pietanza);
+            localStorage.setItem('carrello', JSON.stringify(this.carrello));
+            this.$emit('carrelloAggiornato', this.carrello);
+        },
+        closeAlert() {
+            this.alertClosed = true;
+        },
+        getImageUrl(url) {
+            // Verifica se l'URL è un link HTTP o un percorso locale
+            if (url && (url.startsWith('http://') || url.startsWith('https://'))) {
+                // Se è un link HTTP o HTTPS, usa direttamente l'URL fornito
+                return url;
+            } else {
+                // Altrimenti, costruisci l'URL completo per le immagini nei percorsi locali
+                return 'http://127.0.0.1:8000/storage/' + url;
             }
         }
+
+    },
+    mounted() {
+        console.log('inserito titolo'),
+            console.log(`carrello in mounted ${this.carrello}`);
+        this.caricaCarrello();
+
+    },
+    updated() {
+        console.log(`carrello in updated ${this.carrello}`);
+        this.caricaCarrello();
+    }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -187,18 +179,6 @@ export default {
     margin-bottom: 20px;
 }
 
-.restaurant-info {
-    display: flex;
-    margin-bottom: 20px;
-}
-
-.restaurant-img {
-    flex: 0 0 200px;
-    height: 200px;
-    object-fit: cover;
-    margin-right: 20px;
-}
-
 .restaurant-img {
     flex: 0 0 200px;
     height: 200px;
@@ -208,15 +188,6 @@ export default {
 
 .restaurant-details {
     flex-grow: 1;
-}
-
-.restaurant-details {
-    flex-grow: 1;
-}
-
-.restaurant-name {
-    font-size: 1.25rem;
-    margin-bottom: 5px;
 }
 
 .restaurant-name {
@@ -229,23 +200,9 @@ export default {
     margin-bottom: 5px;
 }
 
-.restaurant-address {
-    font-size: 0.9rem;
-    margin-bottom: 5px;
-}
-
 .restaurant-phone {
     font-size: 0.9rem;
     margin-bottom: 10px;
-}
-
-.restaurant-phone {
-    font-size: 0.9rem;
-    margin-bottom: 10px;
-}
-
-.restaurant-link {
-    margin-top: auto;
 }
 
 .restaurant-link {
@@ -257,66 +214,34 @@ export default {
         flex-direction: column;
     }
 
-    @media (max-width: 768px) {
-        .restaurant-info {
-            flex-direction: column;
-        }
-
-        .restaurant-img {
-            margin-right: 0;
-            margin-bottom: 10px;
-            width: 100%;
-            height: auto;
-        }
+    .restaurant-img {
+        margin-right: 0;
+        margin-bottom: 10px;
+        width: 100%;
+        height: auto;
     }
+}
 
-    img {
-        .restaurant-img {
-            margin-right: 0;
-            margin-bottom: 10px;
-            width: 100%;
-            height: auto;
-        }
-    }
-
-    img {
-        height: 400px;
-        object-fit: cover;
-        margin-bottom: 3rem;
-    }
+img {
+    height: 400px;
+    object-fit: cover;
+    margin-bottom: 3rem;
 }
 
 img.image-preview {
-    img.image-preview {
-        height: 200px;
-    }
+    height: 200px;
 }
 
 .card {
-    .card {
-        margin-bottom: 1.5rem;
-        width: calc(33.333% - 1rem);
-        /* Imposta la larghezza per avere tre cards per riga */
-    }
-
+    margin-bottom: 1.5rem;
     width: calc(33.333% - 1rem);
     /* Imposta la larghezza per avere tre cards per riga */
 }
 
 .card-img-top {
     height: 200px;
-
     /* Altezza delle immagini delle cards */
-    .card-img-top {
-        height: 200px;
-        /* Altezza delle immagini delle cards */
-        object-fit: cover;
-    }
-}
-
-.card-title {
-    font-size: 1.25rem;
-    /* Dimensione del titolo */
+    object-fit: cover;
 }
 
 .card-title {
@@ -327,16 +252,6 @@ img.image-preview {
 .card-text {
     font-size: 1rem;
     /* Dimensione del testo */
-}
-
-.card-text {
-    font-size: 1rem;
-    /* Dimensione del testo */
-}
-
-.card-body {
-    padding: 1rem;
-    /* Padding del corpo delle cards */
 }
 
 .card-body {
@@ -345,14 +260,7 @@ img.image-preview {
 }
 
 .card-deck {
-    .card-deck {
-        display: flex;
-        flex-wrap: wrap;
-        /* Per le righe da tre cards */
-        justify-content: space-between;
-        /* Spaziatura laterale tra le cards */
-    }
-
+    display: flex;
     flex-wrap: wrap;
     /* Per le righe da tre cards */
     justify-content: space-between;
@@ -360,13 +268,9 @@ img.image-preview {
 }
 
 @media (max-width: 768px) {
-    @media (max-width: 768px) {
-        .card {
-            width: calc(50% - 1rem);
-            /* Imposta due cards per riga su dispositivi più piccoli */
-            width: calc(50% - 1rem);
-            /* Imposta due cards per riga su dispositivi più piccoli */
-        }
+    .card {
+        width: calc(50% - 1rem);
+        /* Imposta due cards per riga su dispositivi più piccoli */
     }
 }
 </style>

@@ -19,7 +19,6 @@
                         <ul  class="list-group">
                         <li v-for="articolo in carrello" class="list-group-item">
                         <div class="d-flex justify-content-between">
-
                             <p>{{ articolo.name }}</p>
                             <p>{{ articolo.price }} €</p>
                             <button class="btn btn-danger btn-sm" @click="rimuoviDalCarrello(index, id)">Rimuovi</button>
@@ -41,12 +40,15 @@
             :menu="restaurant.food_item"
             :address="restaurant.address"  :email="restaurant.email"
             :image_url="restaurant.image_url" :phone_number="restaurant.phone_number"/>
+            <OrderCheckout :carrello="carrello" @carrelloAggiornato="aggiornaCarrelloPadre"/>
         </section>
+
     </main>
 </template>
 
 <script>
 import SingleMenu from '@/components/SingleMenu.vue';
+import OrderCheckout from './OrderCheckout.vue';
 import { store } from '@/store';
 import axios from 'axios';
 
@@ -101,13 +103,13 @@ export default {
             localStorage.removeItem('carrello');
         },
         calcolaTotale() {
-            
+
             return this.carrello.reduce((totale, articolo) => totale + parseFloat(articolo.price), 0).toFixed(2);
         },
         rimuoviDalCarrello(index, id) {
             this.carrello.splice(index, 1); // Rimuove l'articolo dal carrello
             localStorage.setItem('carrello', JSON.stringify(this.carrello)); // Aggiorna il carrello nell'localStorage
-            if(this.carrello.length == 0){
+            if (this.carrello.length == 0) {
                 this.store.currentRestaurant = null
                 console.log(`carrello settato a null : ${this.carrello}`)
             }
@@ -119,6 +121,7 @@ export default {
     },
     components: {
         SingleMenu,
+        OrderCheckout,
     },
 
     props: {
